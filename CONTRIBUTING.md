@@ -86,6 +86,7 @@ chef-codegen:
   * .gitignore
   * .rubocop.yml
   * Berksfile
+  * CHANGELOG.md
   * chefignore
   * CONTRIBUTING.md
   * Gemfile
@@ -120,6 +121,7 @@ chef-codegen:
   * recipes/examples~delete_user.rb
   * recipes/examples~flag.rb
   * recipes/examples~instance.rb
+  * recipes/examples~instance~postgres.rb
   * recipes/examples~ssl_cert.rb
   * recipes/examples~tier.rb
   * recipes/examples~user.rb
@@ -130,6 +132,7 @@ chef-codegen:
   * recipes/tests~delete_user.rb
   * recipes/tests~flag.rb
   * recipes/tests~instance.rb
+  * recipes/tests~instance~postgres.rb
   * recipes/tests~ssl_cert.rb
   * recipes/tests~tier.rb
   * recipes/tests~user.rb
