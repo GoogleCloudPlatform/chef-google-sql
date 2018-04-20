@@ -133,7 +133,7 @@ end
 gsql_instance 'id-for-resource' do
   backend_type          'FIRST_GEN', 'SECOND_GEN' or 'EXTERNAL'
   connection_name       string
-  database_version      'MYSQL_5_5', 'MYSQL_5_6' or 'MYSQL_5_7'
+  database_version      'MYSQL_5_5', 'MYSQL_5_6', 'MYSQL_5_7' or 'POSTGRES_9_6'
   failover_replica      {
     available boolean,
     name      string,
@@ -216,6 +216,7 @@ end
   The database engine type and version. For First Generation instances,
   can be MYSQL_5_5, or MYSQL_5_6. For Second Generation instances, can
   be MYSQL_5_6 or MYSQL_5_7. Defaults to MYSQL_5_6.
+  PostgreSQL instances: POSTGRES_9_6
   The databaseVersion property can not be changed after instance
   creation.
 

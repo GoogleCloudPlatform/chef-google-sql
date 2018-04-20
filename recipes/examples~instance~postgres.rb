@@ -42,7 +42,7 @@
 #
 #   CRED_PATH=/path/to/my/cred.json \
 #     chef-client -z --runlist \
-#       "recipe[gsql::tests~delete_database]"
+#       "recipe[gsql::examples~instance~postgres]"
 #
 # For convenience you optionally can add it to your ~/.bash_profile (or the
 # respective .profile settings) environment:
@@ -63,21 +63,33 @@ gauth_credential 'mycred' do
   ]
 end
 
+# Cloud SQL cannot reuse instance names. Add a random suffix so they are always
+# unique.
+#
+# To be able to delete the instance via Chef make sure the instance ID matches
+# the ID used during creation. If you used the create example and specified the
+# 'sql_instance_suffix', you should match it as well during deletion.
 raise ['For this example to run you need to define a env. variable named',
        '"sql_instance_suffix". Please refer to the documentation inside',
-       'the example file',
-       '"recipes/tests~delete_database.rb"'].join(' ') \
+       'the example file "recipes/examples~instance~postgres.rb"'].join(' ') \
   unless ENV.key?('sql_instance_suffix')
 
-gsql_instance "chef-e2e-sql-test-#{ENV['sql_instance_suffix']}" do
+gsql_instance "sql-test-#{ENV['sql_instance_suffix']}" do
   action :create
-  project 'google.com:graphite-playground'
-  credential 'mycred'
-end
-
-gsql_database 'chef-e2e-webstore' do
-  action :delete
-  instance "chef-e2e-sql-test-#{ENV['sql_instance_suffix']}"
+  database_version 'POSTGRES_9_6'
+  settings({
+    tier: 'db-custom-2-8192',
+    ip_configuration:  {
+      authorized_networks: [
+        # The ACL below is for example only. (do NOT use in production as-is)
+        {
+          name: 'google dns server',
+          value: '8.8.8.8/32'
+        }
+      ]
+    }
+  })
+  region 'us-central1'
   project 'google.com:graphite-playground'
   credential 'mycred'
 end
