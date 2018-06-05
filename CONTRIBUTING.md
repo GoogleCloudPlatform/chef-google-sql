@@ -90,7 +90,6 @@ chef-codegen:
   * chefignore
   * CONTRIBUTING.md
   * Gemfile
-  * lib/google/object_store.rb
   * libraries/__init__.rb
   * libraries/google/sql/network/base.rb
   * libraries/google/sql/network/delete.rb
@@ -112,7 +111,6 @@ chef-codegen:
   * libraries/google/sql/property/string.rb
   * libraries/google/sql/property/string_array.rb
   * libraries/google/sql/property/time.rb
-  * LICENSE
   * metadata.rb
   * README.md
   * recipes/examples~database.rb
