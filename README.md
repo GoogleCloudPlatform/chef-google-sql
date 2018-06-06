@@ -32,7 +32,7 @@ end
 
 gsql_instance  "sql-test-#{ENV['sql_instance_suffix']}" do
   action :create
-  project 'google.com:graphite-playground'
+  project ENV['PROJECT'] # ex: 'my-test-project'
   credential 'mycred'
 end
 
@@ -40,7 +40,7 @@ gsql_database 'webstore' do
   action :create
   charset 'utf8'
   instance "sql-test-#{ENV['sql_instance_suffix']}"
-  project 'google.com:graphite-playground'
+  project ENV['PROJECT'] # ex: 'my-test-project'
   credential 'mycred'
 end
 ```
@@ -121,7 +121,7 @@ gsql_instance "sql-test-#{ENV['sql_instance_suffix']}" do
     }
   })
   region 'us-central1'
-  project 'google.com:graphite-playground'
+  project ENV['PROJECT'] # ex: 'my-test-project'
   credential 'mycred'
 end
 
@@ -404,7 +404,7 @@ gsql_database 'webstore' do
   action :create
   charset 'utf8'
   instance "sql-test-#{ENV['sql_instance_suffix']}"
-  project 'google.com:graphite-playground'
+  project ENV['PROJECT'] # ex: 'my-test-project'
   credential 'mycred'
 end
 
@@ -468,7 +468,7 @@ gsql_user 'john.doe' do
   password 'secret-password'
   host '10.1.2.3'
   instance "sql-test-#{ENV['sql_instance_suffix']}"
-  project 'google.com:graphite-playground'
+  project ENV['PROJECT'] # ex: 'my-test-project'
   credential 'mycred'
 end
 
@@ -538,7 +538,7 @@ gsql_ssl_cert 'server-certificate' do
   common_name 'CN=www.mydb.com,O=Acme'
   sha1_fingerprint '8fc295bf77a002db5182e04d92c48258cbc1117a'
   instance "sql-test-#{ENV['sql_instance_suffix']}"
-  project 'google.com:graphite-playground'
+  project ENV['PROJECT'] # ex: 'my-test-project'
   credential 'mycred'
 end
 
@@ -611,7 +611,7 @@ Represents a flag that can be configured for a Cloud SQL instance.
 gsql_flag 'group_concat_max_len' do
   min_value 4
   max_value 4294967295
-  project 'google.com:graphite-playground'
+  project ENV['PROJECT'] # ex: 'my-test-project'
   credential 'mycred'
 end
 
@@ -697,7 +697,7 @@ Generation, or MySQL First Generation instances.
 ```ruby
 gsql_tier 'D0' do
   ram 134217728 # we'll confirm that tier has enough RAM for us
-  project 'google.com:graphite-playground'
+  project ENV['PROJECT'] # ex: 'my-test-project'
   credential 'mycred'
 end
 
