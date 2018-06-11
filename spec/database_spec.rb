@@ -687,7 +687,7 @@ context 'gsql_database' do
             # any directory with the word auth is the google-gauth cookbook.
             cookbook_paths << File.join(File.dirname(__FILE__), 'cookbooks')
 
-          ChefSpec::SoloRunner.new(
+            ChefSpec::SoloRunner.new(
               step_into: %w[gsql_database gsql_instance],
               cookbook_path: cookbook_paths,
               platform: 'ubuntu',
@@ -759,7 +759,7 @@ context 'gsql_database' do
             # any directory with the word auth is the google-gauth cookbook.
             cookbook_paths << File.join(File.dirname(__FILE__), 'cookbooks')
 
-          ChefSpec::SoloRunner.new(
+            ChefSpec::SoloRunner.new(
               step_into: %w[gsql_database gsql_instance],
               cookbook_path: cookbook_paths,
               platform: 'ubuntu',
@@ -840,7 +840,7 @@ context 'gsql_database' do
             # any directory with the word auth is the google-gauth cookbook.
             cookbook_paths << File.join(File.dirname(__FILE__), 'cookbooks')
 
-          ChefSpec::SoloRunner.new(
+            ChefSpec::SoloRunner.new(
               step_into: %w[gsql_database gsql_instance],
               cookbook_path: cookbook_paths,
               platform: 'ubuntu',
@@ -918,7 +918,7 @@ context 'gsql_database' do
             # any directory with the word auth is the google-gauth cookbook.
             cookbook_paths << File.join(File.dirname(__FILE__), 'cookbooks')
 
-          ChefSpec::SoloRunner.new(
+            ChefSpec::SoloRunner.new(
               step_into: %w[gsql_database gsql_instance],
               cookbook_path: cookbook_paths,
               platform: 'ubuntu',
