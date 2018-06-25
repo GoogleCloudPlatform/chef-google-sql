@@ -416,7 +416,7 @@ end
 gsql_database 'id-for-resource' do
   charset    string
   collation  string
-  instance   reference to gsql_instance
+  instance   reference to a gsql_instance
   name       string
   project    string
   credential reference to gauth_credential
@@ -479,7 +479,7 @@ end
 ```ruby
 gsql_user 'id-for-resource' do
   host       string
-  instance   reference to gsql_instance
+  instance   reference to a gsql_instance
   name       string
   password   string
   project    string
@@ -553,7 +553,7 @@ gsql_ssl_cert 'id-for-resource' do
   common_name        string
   create_time        time
   expiration_time    time
-  instance           reference to gsql_instance
+  instance           reference to a gsql_instance
   sha1_fingerprint   string
   project            string
   credential         reference to gauth_credential
