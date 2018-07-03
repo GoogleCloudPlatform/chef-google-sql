@@ -28,7 +28,7 @@
 module Google
   module Sql
     module Data
-      # A class to manage data for replica_configuration for instance.
+      # A class to manage data for ReplicaConfiguration for instance.
       class InstancReplicaConfigu
         include Comparable
 
@@ -137,7 +137,7 @@ module Google
     end
 
     module Property
-      # A class to manage input to replica_configuration for instance.
+      # A class to manage input to ReplicaConfiguration for instance.
       class InstancReplicaConfigu
         def self.coerce
           lambda do |x|
