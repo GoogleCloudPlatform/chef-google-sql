@@ -28,7 +28,7 @@
 module Google
   module Sql
     module Data
-      # A class to manage data for settings for instance.
+      # A class to manage data for Settings for instance.
       class InstanceSettings
         include Comparable
 
@@ -107,7 +107,7 @@ module Google
     end
 
     module Property
-      # A class to manage input to settings for instance.
+      # A class to manage input to Settings for instance.
       class InstanceSettings
         def self.coerce
           ->(x) { ::Google::Sql::Property::InstanceSettings.catalog_parse(x) }

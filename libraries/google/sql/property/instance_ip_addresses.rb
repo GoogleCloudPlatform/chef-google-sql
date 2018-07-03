@@ -29,7 +29,7 @@ require 'google/sql/property/array'
 module Google
   module Sql
     module Data
-      # A class to manage data for ip_addresses for instance.
+      # A class to manage data for IpAddresses for instance.
       class InstancIpAddress
         include Comparable
 
@@ -113,7 +113,7 @@ module Google
     end
 
     module Property
-      # A class to manage input to ip_addresses for instance.
+      # A class to manage input to IpAddresses for instance.
       class InstancIpAddress
         def self.coerce
           ->(x) { ::Google::Sql::Property::InstancIpAddress.catalog_parse(x) }

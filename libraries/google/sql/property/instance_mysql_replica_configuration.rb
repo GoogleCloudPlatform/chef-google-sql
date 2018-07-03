@@ -28,7 +28,7 @@
 module Google
   module Sql
     module Data
-      # A class to manage data for mysql_replica_configuration for instance.
+      # A class to manage data for MysqlReplicaConfiguration for instance.
       class InstaMysqlRepliConfi
         include Comparable
 
@@ -193,7 +193,7 @@ module Google
     end
 
     module Property
-      # A class to manage input to mysql_replica_configuration for instance.
+      # A class to manage input to MysqlReplicaConfiguration for instance.
       class InstaMysqlRepliConfi
         def self.coerce
           lambda do |x|
