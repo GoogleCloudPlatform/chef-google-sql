@@ -91,8 +91,7 @@ module Google
       # Data is coming from the GCP API
       class InstancAuthoriNetworkApi < InstancAuthoriNetwork
         def initialize(args)
-          @expiration_time =
-            Google::Sql::Property::Time.api_parse(args['expirationTime'])
+          @expiration_time = Google::Sql::Property::Time.api_parse(args['expirationTime'])
           @name = Google::Sql::Property::String.api_parse(args['name'])
           @value = Google::Sql::Property::String.api_parse(args['value'])
         end
@@ -102,8 +101,7 @@ module Google
       # Data is coming from the Chef catalog
       class InstancAuthoriNetworkCatalog < InstancAuthoriNetwork
         def initialize(args)
-          @expiration_time =
-            Google::Sql::Property::Time.catalog_parse(args[:expiration_time])
+          @expiration_time = Google::Sql::Property::Time.catalog_parse(args[:expiration_time])
           @name = Google::Sql::Property::String.catalog_parse(args[:name])
           @value = Google::Sql::Property::String.catalog_parse(args[:value])
         end
@@ -114,9 +112,7 @@ module Google
       # A class to manage input to AuthorizedNetworks for instance.
       class InstancAuthoriNetwork
         def self.coerce
-          lambda do |x|
-            ::Google::Sql::Property::InstancAuthoriNetwork.catalog_parse(x)
-          end
+          ->(x) { ::Google::Sql::Property::InstancAuthoriNetwork.catalog_parse(x) }
         end
 
         # Used for parsing Chef catalog
@@ -137,9 +133,7 @@ module Google
       # A Chef property that holds an integer
       class InstancAuthoriNetworkArray < Google::Sql::Property::Array
         def self.coerce
-          lambda do |x|
-            ::Google::Sql::Property::InstancAuthoriNetworkArray.catalog_parse(x)
-          end
+          ->(x) { ::Google::Sql::Property::InstancAuthoriNetworkArray.catalog_parse(x) }
         end
 
         # Used for parsing Chef catalog

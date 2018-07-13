@@ -61,15 +61,9 @@ context 'gsql_user' do
               allow(Time).to receive(:now).and_return(
                 Time.new(2017, 1, 2, 3, 4, 5)
               )
-              expect_network_get_success 1,
-                                         name: 'title0',
-                                         instance: 'test name#0 data'
-              expect_network_get_success 2,
-                                         name: 'title1',
-                                         instance: 'test name#1 data'
-              expect_network_get_success 3,
-                                         name: 'title2',
-                                         instance: 'test name#2 data'
+              expect_network_get_success 1, name: 'title0', instance: 'test name#0 data'
+              expect_network_get_success 2, name: 'title1', instance: 'test name#1 data'
+              expect_network_get_success 3, name: 'title2', instance: 'test name#2 data'
               expect_network_get_success_instance 1
               expect_network_get_success_instance 2
               expect_network_get_success_instance 3
@@ -173,9 +167,7 @@ context 'gsql_user' do
               #   # Add test code here
               # end
 
-              it do
-                is_expected.to have_attributes(password: 'test password#0 data')
-              end
+              it { is_expected.to have_attributes(password: 'test password#0 data') }
             end
 
             context 'gsql_user[title1]' do
@@ -192,9 +184,7 @@ context 'gsql_user' do
               #   # Add test code here
               # end
 
-              it do
-                is_expected.to have_attributes(password: 'test password#1 data')
-              end
+              it { is_expected.to have_attributes(password: 'test password#1 data') }
             end
 
             context 'gsql_user[title2]' do
@@ -211,9 +201,7 @@ context 'gsql_user' do
               #   # Add test code here
               # end
 
-              it do
-                is_expected.to have_attributes(password: 'test password#2 data')
-              end
+              it { is_expected.to have_attributes(password: 'test password#2 data') }
             end
           end
 
@@ -342,9 +330,7 @@ context 'gsql_user' do
               #   # Add test code here
               # end
 
-              it do
-                is_expected.to have_attributes(password: 'test password#0 data')
-              end
+              it { is_expected.to have_attributes(password: 'test password#0 data') }
             end
 
             context 'gsql_user[title1]' do
@@ -361,9 +347,7 @@ context 'gsql_user' do
               #   # Add test code here
               # end
 
-              it do
-                is_expected.to have_attributes(password: 'test password#1 data')
-              end
+              it { is_expected.to have_attributes(password: 'test password#1 data') }
             end
 
             context 'gsql_user[title2]' do
@@ -380,9 +364,7 @@ context 'gsql_user' do
               #   # Add test code here
               # end
 
-              it do
-                is_expected.to have_attributes(password: 'test password#2 data')
-              end
+              it { is_expected.to have_attributes(password: 'test password#2 data') }
             end
           end
 
@@ -435,9 +417,7 @@ context 'gsql_user' do
         # Ensure present: resource missing, ignore, no name, pass
         context 'title == name (pass)' do
           before do
-            expect_network_get_failed 1,
-                                      name: 'title0',
-                                      instance: 'test name#0 data'
+            expect_network_get_failed 1, name: 'title0', instance: 'test name#0 data'
             expect_network_create \
               1,
               {
@@ -448,9 +428,7 @@ context 'gsql_user' do
               },
               name: 'title0',
               instance: 'test name#0 data'
-            expect_network_get_async 1,
-                                     name: 'title0',
-                                     instance: 'test name#0 data'
+            expect_network_get_async 1, name: 'title0', instance: 'test name#0 data'
             expect_network_get_success_instance 1
           end
 
@@ -523,9 +501,7 @@ context 'gsql_user' do
           #   # Add test code here
           # end
 
-          it do
-            is_expected.to have_attributes(password: 'test password#0 data')
-          end
+          it { is_expected.to have_attributes(password: 'test password#0 data') }
         end
 
         # Ensure present: resource missing, ignore, no name, fail
@@ -625,9 +601,7 @@ context 'gsql_user' do
           #   # Add test code here
           # end
 
-          it do
-            is_expected.to have_attributes(password: 'test password#0 data')
-          end
+          it { is_expected.to have_attributes(password: 'test password#0 data') }
         end
 
         # Ensure present: resource missing, ignore, has name, fail
@@ -647,9 +621,7 @@ context 'gsql_user' do
         # Ensure absent: resource missing, ignore, no name, pass
         context 'title == name (pass)' do
           before do
-            expect_network_get_failed 1,
-                                      name: 'title0',
-                                      instance: 'test name#0 data'
+            expect_network_get_failed 1, name: 'title0', instance: 'test name#0 data'
             expect_network_get_success_instance 1
           end
 
@@ -798,13 +770,9 @@ context 'gsql_user' do
         # Ensure absent: resource exists, ignore, no name, pass
         context 'title == name (pass)' do
           before do
-            expect_network_get_success 1,
-                                       name: 'title0',
-                                       instance: 'test name#0 data'
+            expect_network_get_success 1, name: 'title0', instance: 'test name#0 data'
             expect_network_delete 1, 'title0', instance: 'test name#0 data'
-            expect_network_get_async 1,
-                                     name: 'title0',
-                                     instance: 'test name#0 data'
+            expect_network_get_async 1, name: 'title0', instance: 'test name#0 data'
             expect_network_get_success_instance 1
           end
 

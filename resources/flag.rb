@@ -44,35 +44,23 @@ module Google
       resource_name :gsql_flag
 
       # allowed_string_values is Array of Google::Sql::Property::StringArray
-      property :allowed_string_values,
-               Array,
-               coerce: ::Google::Sql::Property::StringArray.coerce,
-               desired_state: true
+      property :allowed_string_values
+               Array, coerce: ::Google::Sql::Property::StringArray.coerce, desired_state: true
       # applies_to is Array of Google::Sql::Property::StringArray
-      property :applies_to,
-               Array,
-               coerce: ::Google::Sql::Property::StringArray.coerce,
-               desired_state: true
-      property :max_value,
-               Integer,
-               coerce: ::Google::Sql::Property::Integer.coerce,
-               desired_state: true
-      property :min_value,
-               Integer,
-               coerce: ::Google::Sql::Property::Integer.coerce,
-               desired_state: true
+      property :applies_to
+               Array, coerce: ::Google::Sql::Property::StringArray.coerce, desired_state: true
+      property :max_value
+               Integer, coerce: ::Google::Sql::Property::Integer.coerce, desired_state: true
+      property :min_value
+               Integer, coerce: ::Google::Sql::Property::Integer.coerce, desired_state: true
       property :f_label,
                String,
                coerce: ::Google::Sql::Property::String.coerce,
                name_property: true, desired_state: true
       property :requires_restart,
                kind_of: [TrueClass, FalseClass],
-               coerce: ::Google::Sql::Property::Boolean.coerce,
-               desired_state: true
-      property :type,
-               String,
-               coerce: ::Google::Sql::Property::String.coerce,
-               desired_state: true
+               coerce: ::Google::Sql::Property::Boolean.coerce, desired_state: true
+      property :type, String, coerce: ::Google::Sql::Property::String.coerce, desired_state: true
 
       property :credential, String, desired_state: false, required: true
       property :project, String, desired_state: false, required: true
@@ -96,23 +84,17 @@ module Google
         else
           @current_resource = @new_resource.clone
           @current_resource.allowed_string_values =
-            ::Google::Sql::Property::StringArray.api_parse(
-              fetch['allowedStringValues']
-            )
+            ::Google::Sql::Property::StringArray.api_parse(fetch['allowedStringValues'])
           @current_resource.applies_to =
             ::Google::Sql::Property::StringArray.api_parse(fetch['appliesTo'])
           @current_resource.max_value =
             ::Google::Sql::Property::Integer.api_parse(fetch['maxValue'])
           @current_resource.min_value =
             ::Google::Sql::Property::Integer.api_parse(fetch['minValue'])
-          @current_resource.f_label =
-            ::Google::Sql::Property::String.api_parse(fetch['name'])
+          @current_resource.f_label = ::Google::Sql::Property::String.api_parse(fetch['name'])
           @current_resource.requires_restart =
-            ::Google::Sql::Property::Boolean.api_parse(
-              fetch['requiresRestart']
-            )
-          @current_resource.type =
-            ::Google::Sql::Property::String.api_parse(fetch['type'])
+            ::Google::Sql::Property::Boolean.api_parse(fetch['requiresRestart'])
+          @current_resource.type = ::Google::Sql::Property::String.api_parse(fetch['type'])
 
           update
         end
@@ -338,8 +320,7 @@ module Google
         end
 
         def fetch_wrapped_resource(resource, kind, wrap_kind, wrap_path)
-          self.class.fetch_wrapped_resource(resource, kind, wrap_kind,
-                                            wrap_path)
+          self.class.fetch_wrapped_resource(resource, kind, wrap_kind, wrap_path)
         end
 
         def self.fetch_wrapped_resource(resource, kind, wrap_kind, wrap_path)

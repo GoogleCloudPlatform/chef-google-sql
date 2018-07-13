@@ -42,32 +42,19 @@ module Google
     class SslCert < Chef::Resource
       resource_name :gsql_ssl_cert
 
-      property :cert,
-               String,
-               coerce: ::Google::Sql::Property::String.coerce,
-               desired_state: true
-      property :cert_serial_number,
-               String,
-               coerce: ::Google::Sql::Property::String.coerce,
-               desired_state: true
-      property :common_name,
-               String,
-               coerce: ::Google::Sql::Property::String.coerce,
-               desired_state: true
-      property :create_time,
-               Time,
-               coerce: ::Google::Sql::Property::Time.coerce, desired_state: true
-      property :expiration_time,
-               Time,
-               coerce: ::Google::Sql::Property::Time.coerce, desired_state: true
+      property :cert, String, coerce: ::Google::Sql::Property::String.coerce, desired_state: true
+      property :cert_serial_number
+               String, coerce: ::Google::Sql::Property::String.coerce, desired_state: true
+      property :common_name
+               String, coerce: ::Google::Sql::Property::String.coerce, desired_state: true
+      property :create_time, Time, coerce: ::Google::Sql::Property::Time.coerce, desired_state: true
+      property :expiration_time
+               Time, coerce: ::Google::Sql::Property::Time.coerce, desired_state: true
       property :instance,
                [String, ::Google::Sql::Data::InstancNameRef],
-               coerce: ::Google::Sql::Property::InstancNameRef.coerce,
-               desired_state: true
-      property :sha1_fingerprint,
-               String,
-               coerce: ::Google::Sql::Property::String.coerce,
-               desired_state: true
+               coerce: ::Google::Sql::Property::InstancNameRef.coerce, desired_state: true
+      property :sha1_fingerprint
+               String, coerce: ::Google::Sql::Property::String.coerce, desired_state: true
 
       property :credential, String, desired_state: false, required: true
       property :project, String, desired_state: false, required: true
@@ -89,12 +76,9 @@ module Google
           end
         else
           @current_resource = @new_resource.clone
-          @current_resource.cert =
-            ::Google::Sql::Property::String.api_parse(fetch['cert'])
+          @current_resource.cert = ::Google::Sql::Property::String.api_parse(fetch['cert'])
           @current_resource.cert_serial_number =
-            ::Google::Sql::Property::String.api_parse(
-              fetch['certSerialNumber']
-            )
+            ::Google::Sql::Property::String.api_parse(fetch['certSerialNumber'])
           @current_resource.common_name =
             ::Google::Sql::Property::String.api_parse(fetch['commonName'])
           @current_resource.create_time =

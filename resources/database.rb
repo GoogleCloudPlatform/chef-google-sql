@@ -44,22 +44,16 @@ module Google
     class Database < Chef::Resource
       resource_name :gsql_database
 
-      property :charset,
-               String,
-               coerce: ::Google::Sql::Property::String.coerce,
-               desired_state: true
-      property :collation,
-               String,
-               coerce: ::Google::Sql::Property::String.coerce,
-               desired_state: true
+      property :charset, String, coerce: ::Google::Sql::Property::String.coerce, desired_state: true
+      property :collation
+               String, coerce: ::Google::Sql::Property::String.coerce, desired_state: true
       property :d_label,
                String,
                coerce: ::Google::Sql::Property::String.coerce,
                name_property: true, desired_state: true
       property :instance,
                [String, ::Google::Sql::Data::InstancNameRef],
-               coerce: ::Google::Sql::Property::InstancNameRef.coerce,
-               desired_state: true
+               coerce: ::Google::Sql::Property::InstancNameRef.coerce, desired_state: true
 
       property :credential, String, desired_state: false, required: true
       property :project, String, desired_state: false, required: true
@@ -81,12 +75,10 @@ module Google
           end
         else
           @current_resource = @new_resource.clone
-          @current_resource.charset =
-            ::Google::Sql::Property::String.api_parse(fetch['charset'])
+          @current_resource.charset = ::Google::Sql::Property::String.api_parse(fetch['charset'])
           @current_resource.collation =
             ::Google::Sql::Property::String.api_parse(fetch['collation'])
-          @current_resource.d_label =
-            ::Google::Sql::Property::String.api_parse(fetch['name'])
+          @current_resource.d_label = ::Google::Sql::Property::String.api_parse(fetch['name'])
 
           update
         end
@@ -326,10 +318,11 @@ module Google
           op_result = return_if_object(response, 'sql#operation')
           return if op_result.nil?
           status = ::Google::HashUtils.navigate(op_result, %w[status])
-          wait_done = wait_for_completion(status, op_result, resource)
           fetch_resource(
             resource,
-            URI.parse(::Google::HashUtils.navigate(wait_done,
+            URI.parse(::Google::HashUtils.navigate(wait_for_completion(status,
+                                                                       op_result,
+                                                                       resource),
                                                    %w[targetLink])),
             'sql#database'
           )

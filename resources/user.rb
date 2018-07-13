@@ -44,22 +44,16 @@ module Google
     class User < Chef::Resource
       resource_name :gsql_user
 
-      property :host,
-               String,
-               coerce: ::Google::Sql::Property::String.coerce,
-               desired_state: true
+      property :host, String, coerce: ::Google::Sql::Property::String.coerce, desired_state: true
       property :u_label,
                String,
                coerce: ::Google::Sql::Property::String.coerce,
                name_property: true, desired_state: true
       property :instance,
                [String, ::Google::Sql::Data::InstancNameRef],
-               coerce: ::Google::Sql::Property::InstancNameRef.coerce,
-               desired_state: true
-      property :password,
-               String,
-               coerce: ::Google::Sql::Property::String.coerce,
-               desired_state: true
+               coerce: ::Google::Sql::Property::InstancNameRef.coerce, desired_state: true
+      property :password
+               String, coerce: ::Google::Sql::Property::String.coerce, desired_state: true
 
       property :credential, String, desired_state: false, required: true
       property :project, String, desired_state: false, required: true
@@ -82,10 +76,8 @@ module Google
           end
         else
           @current_resource = @new_resource.clone
-          @current_resource.host =
-            ::Google::Sql::Property::String.api_parse(fetch['host'])
-          @current_resource.u_label =
-            ::Google::Sql::Property::String.api_parse(fetch['name'])
+          @current_resource.host = ::Google::Sql::Property::String.api_parse(fetch['host'])
+          @current_resource.u_label = ::Google::Sql::Property::String.api_parse(fetch['name'])
 
           update
         end
@@ -370,8 +362,7 @@ module Google
         end
 
         def fetch_wrapped_resource(resource, kind, wrap_kind, wrap_path)
-          self.class.fetch_wrapped_resource(resource, kind, wrap_kind,
-                                            wrap_path)
+          self.class.fetch_wrapped_resource(resource, kind, wrap_kind, wrap_path)
         end
 
         def self.fetch_wrapped_resource(resource, kind, wrap_kind, wrap_path)

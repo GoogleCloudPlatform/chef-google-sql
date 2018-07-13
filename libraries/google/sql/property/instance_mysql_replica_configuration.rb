@@ -104,22 +104,13 @@ module Google
             { self: ca_certificate, other: other.ca_certificate },
             { self: client_certificate, other: other.client_certificate },
             { self: client_key, other: other.client_key },
-            {
-              self: connect_retry_interval,
-              other: other.connect_retry_interval
-            },
+            { self: connect_retry_interval, other: other.connect_retry_interval },
             { self: dump_file_path, other: other.dump_file_path },
-            {
-              self: master_heartbeat_period,
-              other: other.master_heartbeat_period
-            },
+            { self: master_heartbeat_period, other: other.master_heartbeat_period },
             { self: password, other: other.password },
             { self: ssl_cipher, other: other.ssl_cipher },
             { self: username, other: other.username },
-            {
-              self: verify_server_certificate,
-              other: other.verify_server_certificate
-            }
+            { self: verify_server_certificate, other: other.verify_server_certificate }
           ]
         end
         # rubocop:enable Metrics/MethodLength
@@ -130,27 +121,19 @@ module Google
       class InstaMysqlRepliConfiApi < InstaMysqlRepliConfi
         # rubocop:disable Metrics/MethodLength
         def initialize(args)
-          @ca_certificate =
-            Google::Sql::Property::String.api_parse(args['caCertificate'])
-          @client_certificate =
-            Google::Sql::Property::String.api_parse(args['clientCertificate'])
-          @client_key =
-            Google::Sql::Property::String.api_parse(args['clientKey'])
-          @connect_retry_interval = Google::Sql::Property::Integer.api_parse(
-            args['connectRetryInterval']
-          )
-          @dump_file_path =
-            Google::Sql::Property::String.api_parse(args['dumpFilePath'])
-          @master_heartbeat_period = Google::Sql::Property::Integer.api_parse(
-            args['masterHeartbeatPeriod']
-          )
+          @ca_certificate = Google::Sql::Property::String.api_parse(args['caCertificate'])
+          @client_certificate = Google::Sql::Property::String.api_parse(args['clientCertificate'])
+          @client_key = Google::Sql::Property::String.api_parse(args['clientKey'])
+          @connect_retry_interval =
+            Google::Sql::Property::Integer.api_parse(args['connectRetryInterval'])
+          @dump_file_path = Google::Sql::Property::String.api_parse(args['dumpFilePath'])
+          @master_heartbeat_period =
+            Google::Sql::Property::Integer.api_parse(args['masterHeartbeatPeriod'])
           @password = Google::Sql::Property::String.api_parse(args['password'])
-          @ssl_cipher =
-            Google::Sql::Property::String.api_parse(args['sslCipher'])
+          @ssl_cipher = Google::Sql::Property::String.api_parse(args['sslCipher'])
           @username = Google::Sql::Property::String.api_parse(args['username'])
-          @verify_server_certificate = Google::Sql::Property::Boolean.api_parse(
-            args['verifyServerCertificate']
-          )
+          @verify_server_certificate =
+            Google::Sql::Property::Boolean.api_parse(args['verifyServerCertificate'])
         end
         # rubocop:enable Metrics/MethodLength
       end
@@ -160,33 +143,20 @@ module Google
       class InstaMysqlRepliConfiCatalog < InstaMysqlRepliConfi
         # rubocop:disable Metrics/MethodLength
         def initialize(args)
-          @ca_certificate =
-            Google::Sql::Property::String.catalog_parse(args[:ca_certificate])
-          @client_certificate = Google::Sql::Property::String.catalog_parse(
-            args[:client_certificate]
-          )
-          @client_key =
-            Google::Sql::Property::String.catalog_parse(args[:client_key])
+          @ca_certificate = Google::Sql::Property::String.catalog_parse(args[:ca_certificate])
+          @client_certificate =
+            Google::Sql::Property::String.catalog_parse(args[:client_certificate])
+          @client_key = Google::Sql::Property::String.catalog_parse(args[:client_key])
           @connect_retry_interval =
-            Google::Sql::Property::Integer.catalog_parse(
-              args[:connect_retry_interval]
-            )
-          @dump_file_path =
-            Google::Sql::Property::String.catalog_parse(args[:dump_file_path])
+            Google::Sql::Property::Integer.catalog_parse(args[:connect_retry_interval])
+          @dump_file_path = Google::Sql::Property::String.catalog_parse(args[:dump_file_path])
           @master_heartbeat_period =
-            Google::Sql::Property::Integer.catalog_parse(
-              args[:master_heartbeat_period]
-            )
-          @password =
-            Google::Sql::Property::String.catalog_parse(args[:password])
-          @ssl_cipher =
-            Google::Sql::Property::String.catalog_parse(args[:ssl_cipher])
-          @username =
-            Google::Sql::Property::String.catalog_parse(args[:username])
+            Google::Sql::Property::Integer.catalog_parse(args[:master_heartbeat_period])
+          @password = Google::Sql::Property::String.catalog_parse(args[:password])
+          @ssl_cipher = Google::Sql::Property::String.catalog_parse(args[:ssl_cipher])
+          @username = Google::Sql::Property::String.catalog_parse(args[:username])
           @verify_server_certificate =
-            Google::Sql::Property::Boolean.catalog_parse(
-              args[:verify_server_certificate]
-            )
+            Google::Sql::Property::Boolean.catalog_parse(args[:verify_server_certificate])
         end
         # rubocop:enable Metrics/MethodLength
       end
@@ -196,9 +166,7 @@ module Google
       # A class to manage input to MysqlReplicaConfiguration for instance.
       class InstaMysqlRepliConfi
         def self.coerce
-          lambda do |x|
-            ::Google::Sql::Property::InstaMysqlRepliConfi.catalog_parse(x)
-          end
+          ->(x) { ::Google::Sql::Property::InstaMysqlRepliConfi.catalog_parse(x) }
         end
 
         # Used for parsing Chef catalog
