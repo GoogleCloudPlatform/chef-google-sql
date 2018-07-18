@@ -83,15 +83,9 @@ module Google
         def compare_fields(other)
           [
             { self: failover_target, other: other.failover_target },
-            {
-              self: mysql_replica_configuration,
-              other: other.mysql_replica_configuration
-            },
+            { self: mysql_replica_configuration, other: other.mysql_replica_configuration },
             { self: replica_names, other: other.replica_names },
-            {
-              self: service_account_email_address,
-              other: other.service_account_email_address
-            }
+            { self: service_account_email_address, other: other.service_account_email_address }
           ]
         end
       end
@@ -100,18 +94,12 @@ module Google
       # Data is coming from the GCP API
       class InstancReplicaConfiguApi < InstancReplicaConfigu
         def initialize(args)
-          @failover_target =
-            Google::Sql::Property::Boolean.api_parse(args['failoverTarget'])
+          @failover_target = Google::Sql::Property::Boolean.api_parse(args['failoverTarget'])
           @mysql_replica_configuration =
-            Google::Sql::Property::InstaMysqlRepliConfi.api_parse(
-              args['mysqlReplicaConfiguration']
-            )
-          @replica_names =
-            Google::Sql::Property::StringArray.api_parse(args['replicaNames'])
+            Google::Sql::Property::InstaMysqlRepliConfi.api_parse(args['mysqlReplicaConfiguration'])
+          @replica_names = Google::Sql::Property::StringArray.api_parse(args['replicaNames'])
           @service_account_email_address =
-            Google::Sql::Property::String.api_parse(
-              args['serviceAccountEmailAddress']
-            )
+            Google::Sql::Property::String.api_parse(args['serviceAccountEmailAddress'])
         end
       end
 
@@ -119,19 +107,13 @@ module Google
       # Data is coming from the Chef catalog
       class InstancReplicaConfiguCatalog < InstancReplicaConfigu
         def initialize(args)
-          @failover_target =
-            Google::Sql::Property::Boolean.catalog_parse(args[:failover_target])
-          @mysql_replica_configuration =
-            Google::Sql::Property::InstaMysqlRepliConfi.catalog_parse(
-              args[:mysql_replica_configuration]
-            )
-          @replica_names = Google::Sql::Property::StringArray.catalog_parse(
-            args[:replica_names]
+          @failover_target = Google::Sql::Property::Boolean.catalog_parse(args[:failover_target])
+          @mysql_replica_configuration = Google::Sql::Property::InstaMysqlRepliConfi.catalog_parse(
+            args[:mysql_replica_configuration]
           )
+          @replica_names = Google::Sql::Property::StringArray.catalog_parse(args[:replica_names])
           @service_account_email_address =
-            Google::Sql::Property::String.catalog_parse(
-              args[:service_account_email_address]
-            )
+            Google::Sql::Property::String.catalog_parse(args[:service_account_email_address])
         end
       end
     end
@@ -140,9 +122,7 @@ module Google
       # A class to manage input to ReplicaConfiguration for instance.
       class InstancReplicaConfigu
         def self.coerce
-          lambda do |x|
-            ::Google::Sql::Property::InstancReplicaConfigu.catalog_parse(x)
-          end
+          ->(x) { ::Google::Sql::Property::InstancReplicaConfigu.catalog_parse(x) }
         end
 
         # Used for parsing Chef catalog

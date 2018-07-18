@@ -92,14 +92,10 @@ module Google
       # Data is coming from the GCP API
       class InstancIpConfiguApi < InstancIpConfigu
         def initialize(args)
-          @ipv4_enabled =
-            Google::Sql::Property::Boolean.api_parse(args['ipv4Enabled'])
+          @ipv4_enabled = Google::Sql::Property::Boolean.api_parse(args['ipv4Enabled'])
           @authorized_networks =
-            Google::Sql::Property::InstancAuthoriNetworkArray.api_parse(
-              args['authorizedNetworks']
-            )
-          @require_ssl =
-            Google::Sql::Property::Boolean.api_parse(args['requireSsl'])
+            Google::Sql::Property::InstancAuthoriNetworkArray.api_parse(args['authorizedNetworks'])
+          @require_ssl = Google::Sql::Property::Boolean.api_parse(args['requireSsl'])
         end
       end
 
@@ -107,14 +103,11 @@ module Google
       # Data is coming from the Chef catalog
       class InstancIpConfiguCatalog < InstancIpConfigu
         def initialize(args)
-          @ipv4_enabled =
-            Google::Sql::Property::Boolean.catalog_parse(args[:ipv4_enabled])
-          @authorized_networks =
-            Google::Sql::Property::InstancAuthoriNetworkArray.catalog_parse(
-              args[:authorized_networks]
-            )
-          @require_ssl =
-            Google::Sql::Property::Boolean.catalog_parse(args[:require_ssl])
+          @ipv4_enabled = Google::Sql::Property::Boolean.catalog_parse(args[:ipv4_enabled])
+          @authorized_networks = Google::Sql::Property::InstancAuthoriNetworkArray.catalog_parse(
+            args[:authorized_networks]
+          )
+          @require_ssl = Google::Sql::Property::Boolean.catalog_parse(args[:require_ssl])
         end
       end
     end

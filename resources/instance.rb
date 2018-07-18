@@ -58,54 +58,38 @@ module Google
       property :backend_type,
                equal_to: %w[FIRST_GEN SECOND_GEN EXTERNAL],
                coerce: ::Google::Sql::Property::Enum.coerce, desired_state: true
-      property :connection_name,
-               String,
-               coerce: ::Google::Sql::Property::String.coerce,
-               desired_state: true
+      property :connection_name
+               String, coerce: ::Google::Sql::Property::String.coerce, desired_state: true
       property :database_version,
                equal_to: %w[MYSQL_5_5 MYSQL_5_6 MYSQL_5_7 POSTGRES_9_6],
                coerce: ::Google::Sql::Property::Enum.coerce, desired_state: true
       property :failover_replica,
                [Hash, ::Google::Sql::Data::InstancFailoveReplica],
-               coerce: ::Google::Sql::Property::InstancFailoveReplica.coerce,
-               desired_state: true
+               coerce: ::Google::Sql::Property::InstancFailoveReplica.coerce, desired_state: true
       property :instance_type,
-               equal_to: %w[CLOUD_SQL_INSTANCE
-                            ON_PREMISES_INSTANCE READ_REPLICA_INSTANCE],
+               equal_to: %w[CLOUD_SQL_INSTANCE ON_PREMISES_INSTANCE READ_REPLICA_INSTANCE],
                coerce: ::Google::Sql::Property::Enum.coerce, desired_state: true
       # ip_addresses is Array of Google::Sql::Property::InstancIpAddressArray
       property :ip_addresses,
                Array,
-               coerce: ::Google::Sql::Property::InstancIpAddressArray.coerce,
-               desired_state: true
-      property :ipv6_address,
-               String,
-               coerce: ::Google::Sql::Property::String.coerce,
-               desired_state: true
-      property :master_instance_name,
-               String,
-               coerce: ::Google::Sql::Property::String.coerce,
-               desired_state: true
-      property :max_disk_size,
-               Integer,
-               coerce: ::Google::Sql::Property::Integer.coerce,
-               desired_state: true
+               coerce: ::Google::Sql::Property::InstancIpAddressArray.coerce, desired_state: true
+      property :ipv6_address
+               String, coerce: ::Google::Sql::Property::String.coerce, desired_state: true
+      property :master_instance_name
+               String, coerce: ::Google::Sql::Property::String.coerce, desired_state: true
+      property :max_disk_size
+               Integer, coerce: ::Google::Sql::Property::Integer.coerce, desired_state: true
       property :i_label,
                String,
                coerce: ::Google::Sql::Property::String.coerce,
                name_property: true, desired_state: true
-      property :region,
-               String,
-               coerce: ::Google::Sql::Property::String.coerce,
-               desired_state: true
+      property :region, String, coerce: ::Google::Sql::Property::String.coerce, desired_state: true
       property :replica_configuration,
                [Hash, ::Google::Sql::Data::InstancReplicaConfigu],
-               coerce: ::Google::Sql::Property::InstancReplicaConfigu.coerce,
-               desired_state: true
+               coerce: ::Google::Sql::Property::InstancReplicaConfigu.coerce, desired_state: true
       property :settings,
                [Hash, ::Google::Sql::Data::InstanceSettings],
-               coerce: ::Google::Sql::Property::InstanceSettings.coerce,
-               desired_state: true
+               coerce: ::Google::Sql::Property::InstanceSettings.coerce, desired_state: true
 
       property :credential, String, desired_state: false, required: true
       property :project, String, desired_state: false, required: true
@@ -134,35 +118,25 @@ module Google
           @current_resource.database_version =
             ::Google::Sql::Property::Enum.api_parse(fetch['databaseVersion'])
           @current_resource.failover_replica =
-            ::Google::Sql::Property::InstancFailoveReplica.api_parse(
-              fetch['failoverReplica']
-            )
+            ::Google::Sql::Property::InstancFailoveReplica.api_parse(fetch['failoverReplica'])
           @current_resource.instance_type =
             ::Google::Sql::Property::Enum.api_parse(fetch['instanceType'])
           @current_resource.ip_addresses =
-            ::Google::Sql::Property::InstancIpAddressArray.api_parse(
-              fetch['ipAddresses']
-            )
+            ::Google::Sql::Property::InstancIpAddressArray.api_parse(fetch['ipAddresses'])
           @current_resource.ipv6_address =
             ::Google::Sql::Property::String.api_parse(fetch['ipv6Address'])
           @current_resource.master_instance_name =
-            ::Google::Sql::Property::String.api_parse(
-              fetch['masterInstanceName']
-            )
+            ::Google::Sql::Property::String.api_parse(fetch['masterInstanceName'])
           @current_resource.max_disk_size =
             ::Google::Sql::Property::Integer.api_parse(fetch['maxDiskSize'])
-          @current_resource.i_label =
-            ::Google::Sql::Property::String.api_parse(fetch['name'])
-          @current_resource.region =
-            ::Google::Sql::Property::String.api_parse(fetch['region'])
+          @current_resource.i_label = ::Google::Sql::Property::String.api_parse(fetch['name'])
+          @current_resource.region = ::Google::Sql::Property::String.api_parse(fetch['region'])
           @current_resource.replica_configuration =
             ::Google::Sql::Property::InstancReplicaConfigu.api_parse(
               fetch['replicaConfiguration']
             )
           @current_resource.settings =
-            ::Google::Sql::Property::InstanceSettings.api_parse(
-              fetch['settings']
-            )
+            ::Google::Sql::Property::InstanceSettings.api_parse(fetch['settings'])
 
           update
         end
@@ -428,10 +402,11 @@ module Google
           op_result = return_if_object(response, 'sql#operation')
           return if op_result.nil?
           status = ::Google::HashUtils.navigate(op_result, %w[status])
-          wait_done = wait_for_completion(status, op_result, resource)
           fetch_resource(
             resource,
-            URI.parse(::Google::HashUtils.navigate(wait_done,
+            URI.parse(::Google::HashUtils.navigate(wait_for_completion(status,
+                                                                       op_result,
+                                                                       resource),
                                                    %w[targetLink])),
             'sql#instance'
           )

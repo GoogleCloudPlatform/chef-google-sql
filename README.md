@@ -79,17 +79,14 @@ For complete details of the authentication cookbook, visit the
 * [`gsql_user`](#gsql_user) -
     The Users resource represents a database user in a Cloud SQL instance.
 * [`gsql_ssl_cert`](#gsql_ssl_cert) -
-    Represents an SSL certificate created for a Cloud SQL instance. To use
-    the
+    Represents an SSL certificate created for a Cloud SQL instance. To use the
     SSL certificate you must have the SSL Client Certificate and the
-    associated SSL Client Key. The Client Key can be downloaded only when
-    the
+    associated SSL Client Key. The Client Key can be downloaded only when the
     SSL certificate is created with the insert method.
 * [`gsql_flag`](#gsql_flag) -
     Represents a flag that can be configured for a Cloud SQL instance.
 * [`gsql_tier`](#gsql_tier) -
-    The Tiers resource represents a service configuration that can be used
-    to
+    The Tiers resource represents a service configuration that can be used to
     define a Cloud SQL instance. Each tier has an associated RAM, maximum
     storage, and list of regions in which the tier can be used. Available
     tiers vary depending on whether you use PostgreSQL, MySQL Second
@@ -446,8 +443,7 @@ end
   This does not include the project ID or instance name.
 
 * `instance` -
-  Required. The name of the Cloud SQL instance. This does not include the
-  project
+  Required. The name of the Cloud SQL instance. This does not include the project
   ID.
 
 #### Label
@@ -500,8 +496,7 @@ end
 #### Properties
 
 * `host` -
-  Required. The host name from which the user can connect. For insert
-  operations,
+  Required. The host name from which the user can connect. For insert operations,
   host defaults to an empty string. For update operations, host is
   specified as part of the request URL. The host name cannot be updated
   after insertion.
@@ -510,8 +505,7 @@ end
   Required. The name of the user in the Cloud SQL instance.
 
 * `instance` -
-  Required. The name of the Cloud SQL instance. This does not include the
-  project
+  Required. The name of the Cloud SQL instance. This does not include the project
   ID.
 
 * `password` -
@@ -590,8 +584,7 @@ end
   2012-11-15T16:19:00.094Z.
 
 * `instance` -
-  Required. The name of the Cloud SQL instance. This does not include the
-  project
+  Required. The name of the Cloud SQL instance. This does not include the project
   ID.
 
 * `sha1_fingerprint` -
@@ -652,8 +645,7 @@ end
 #### Properties
 
 * `allowed_string_values` -
-  Output only. For STRING flags, List of strings that the value can be set
-  to.
+  Output only. For STRING flags, List of strings that the value can be set to.
 
 * `applies_to` -
   Output only. The database versions this flag is supported for.
@@ -669,13 +661,11 @@ end
   hyphens, e.g. max_allowed_packet
 
 * `requires_restart` -
-  Output only. Indicates whether changing this flag will trigger a database
-  restart.
+  Output only. Indicates whether changing this flag will trigger a database restart.
   Only applicable to Second Generation instances.
 
 * `type` -
-  Output only. The type of the flag. Flags are typed to being BOOLEAN,
-  STRING,
+  Output only. The type of the flag. Flags are typed to being BOOLEAN, STRING,
   INTEGER or NONE. NONE is used for flags which do not take a value,
   such as skip_grant_tables.
 

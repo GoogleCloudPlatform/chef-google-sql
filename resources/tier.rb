@@ -42,23 +42,13 @@ module Google
     class Tier < Chef::Resource
       resource_name :gsql_tier
 
-      property :disk_quota,
-               Integer,
-               coerce: ::Google::Sql::Property::Integer.coerce,
-               desired_state: true
-      property :ram,
-               Integer,
-               coerce: ::Google::Sql::Property::Integer.coerce,
-               desired_state: true
+      property :disk_quota
+               Integer, coerce: ::Google::Sql::Property::Integer.coerce, desired_state: true
+      property :ram, Integer, coerce: ::Google::Sql::Property::Integer.coerce, desired_state: true
       # region is Array of Google::Sql::Property::StringArray
-      property :region,
-               Array,
-               coerce: ::Google::Sql::Property::StringArray.coerce,
-               desired_state: true
-      property :tier,
-               String,
-               coerce: ::Google::Sql::Property::String.coerce,
-               desired_state: true
+      property :region
+               Array, coerce: ::Google::Sql::Property::StringArray.coerce, desired_state: true
+      property :tier, String, coerce: ::Google::Sql::Property::String.coerce, desired_state: true
 
       property :credential, String, desired_state: false, required: true
       property :project, String, desired_state: false, required: true
@@ -83,8 +73,7 @@ module Google
           @current_resource = @new_resource.clone
           @current_resource.disk_quota =
             ::Google::Sql::Property::Integer.api_parse(fetch['DiskQuota'])
-          @current_resource.ram =
-            ::Google::Sql::Property::Integer.api_parse(fetch['RAM'])
+          @current_resource.ram = ::Google::Sql::Property::Integer.api_parse(fetch['RAM'])
           @current_resource.region =
             ::Google::Sql::Property::StringArray.api_parse(fetch['region'])
 
@@ -309,8 +298,7 @@ module Google
         end
 
         def fetch_wrapped_resource(resource, kind, wrap_kind, wrap_path)
-          self.class.fetch_wrapped_resource(resource, kind, wrap_kind,
-                                            wrap_path)
+          self.class.fetch_wrapped_resource(resource, kind, wrap_kind, wrap_path)
         end
 
         def self.fetch_wrapped_resource(resource, kind, wrap_kind, wrap_path)

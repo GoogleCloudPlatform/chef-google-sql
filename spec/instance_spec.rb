@@ -291,46 +291,29 @@ context 'gsql_instance' do
 
               it { is_expected.to have_attributes(backend_type: 'FIRST_GEN') }
 
-              it do
-                is_expected
-                  .to have_attributes(
-                    connection_name: 'test connection_name#0 data'
-                  )
-              end
+              it { is_expected.to have_attributes(connection_name: 'test connection_name#0 data') }
 
-              it do
-                is_expected.to have_attributes(database_version: 'MYSQL_5_5')
-              end
+              it { is_expected.to have_attributes(database_version: 'MYSQL_5_5') }
 
               # TODO(nelsonjr): Implement complex nested property object test.
               # it 'failoverReplica' do
               #   # Add test code here
               # end
 
-              it do
-                is_expected
-                  .to have_attributes(instance_type: 'CLOUD_SQL_INSTANCE')
-              end
+              it { is_expected.to have_attributes(instance_type: 'CLOUD_SQL_INSTANCE') }
+
+              it { is_expected.to have_attributes(ipv6_address: 'test ipv6_address#0 data') }
 
               it do
                 is_expected
-                  .to have_attributes(ipv6_address: 'test ipv6_address#0 data')
-              end
-
-              it do
-                is_expected
-                  .to have_attributes(
-                    master_instance_name: 'test master_instance_name#0 data'
-                  )
+                  .to have_attributes(master_instance_name: 'test master_instance_name#0 data')
               end
 
               it { is_expected.to have_attributes(max_disk_size: 399_168_897) }
 
               it { is_expected.to have_attributes(i_label: 'title0') }
 
-              it do
-                is_expected.to have_attributes(region: 'test region#0 data')
-              end
+              it { is_expected.to have_attributes(region: 'test region#0 data') }
 
               # TODO(nelsonjr): Implement complex nested property object test.
               # it 'replicaConfiguration' do
@@ -350,46 +333,29 @@ context 'gsql_instance' do
 
               it { is_expected.to have_attributes(backend_type: 'SECOND_GEN') }
 
-              it do
-                is_expected
-                  .to have_attributes(
-                    connection_name: 'test connection_name#1 data'
-                  )
-              end
+              it { is_expected.to have_attributes(connection_name: 'test connection_name#1 data') }
 
-              it do
-                is_expected.to have_attributes(database_version: 'MYSQL_5_6')
-              end
+              it { is_expected.to have_attributes(database_version: 'MYSQL_5_6') }
 
               # TODO(nelsonjr): Implement complex nested property object test.
               # it 'failoverReplica' do
               #   # Add test code here
               # end
 
-              it do
-                is_expected
-                  .to have_attributes(instance_type: 'ON_PREMISES_INSTANCE')
-              end
+              it { is_expected.to have_attributes(instance_type: 'ON_PREMISES_INSTANCE') }
+
+              it { is_expected.to have_attributes(ipv6_address: 'test ipv6_address#1 data') }
 
               it do
                 is_expected
-                  .to have_attributes(ipv6_address: 'test ipv6_address#1 data')
-              end
-
-              it do
-                is_expected
-                  .to have_attributes(
-                    master_instance_name: 'test master_instance_name#1 data'
-                  )
+                  .to have_attributes(master_instance_name: 'test master_instance_name#1 data')
               end
 
               it { is_expected.to have_attributes(max_disk_size: 798_337_795) }
 
               it { is_expected.to have_attributes(i_label: 'title1') }
 
-              it do
-                is_expected.to have_attributes(region: 'test region#1 data')
-              end
+              it { is_expected.to have_attributes(region: 'test region#1 data') }
 
               # TODO(nelsonjr): Implement complex nested property object test.
               # it 'replicaConfiguration' do
@@ -409,48 +375,29 @@ context 'gsql_instance' do
 
               it { is_expected.to have_attributes(backend_type: 'EXTERNAL') }
 
-              it do
-                is_expected
-                  .to have_attributes(
-                    connection_name: 'test connection_name#2 data'
-                  )
-              end
+              it { is_expected.to have_attributes(connection_name: 'test connection_name#2 data') }
 
-              it do
-                is_expected.to have_attributes(database_version: 'MYSQL_5_7')
-              end
+              it { is_expected.to have_attributes(database_version: 'MYSQL_5_7') }
 
               # TODO(nelsonjr): Implement complex nested property object test.
               # it 'failoverReplica' do
               #   # Add test code here
               # end
 
-              it do
-                is_expected
-                  .to have_attributes(instance_type: 'READ_REPLICA_INSTANCE')
-              end
+              it { is_expected.to have_attributes(instance_type: 'READ_REPLICA_INSTANCE') }
+
+              it { is_expected.to have_attributes(ipv6_address: 'test ipv6_address#2 data') }
 
               it do
                 is_expected
-                  .to have_attributes(ipv6_address: 'test ipv6_address#2 data')
+                  .to have_attributes(master_instance_name: 'test master_instance_name#2 data')
               end
 
-              it do
-                is_expected
-                  .to have_attributes(
-                    master_instance_name: 'test master_instance_name#2 data'
-                  )
-              end
-
-              it do
-                is_expected.to have_attributes(max_disk_size: 1_197_506_692)
-              end
+              it { is_expected.to have_attributes(max_disk_size: 1_197_506_692) }
 
               it { is_expected.to have_attributes(i_label: 'title2') }
 
-              it do
-                is_expected.to have_attributes(region: 'test region#2 data')
-              end
+              it { is_expected.to have_attributes(region: 'test region#2 data') }
 
               # TODO(nelsonjr): Implement complex nested property object test.
               # it 'replicaConfiguration' do
@@ -713,46 +660,29 @@ context 'gsql_instance' do
 
               it { is_expected.to have_attributes(backend_type: 'FIRST_GEN') }
 
-              it do
-                is_expected
-                  .to have_attributes(
-                    connection_name: 'test connection_name#0 data'
-                  )
-              end
+              it { is_expected.to have_attributes(connection_name: 'test connection_name#0 data') }
 
-              it do
-                is_expected.to have_attributes(database_version: 'MYSQL_5_5')
-              end
+              it { is_expected.to have_attributes(database_version: 'MYSQL_5_5') }
 
               # TODO(nelsonjr): Implement complex nested property object test.
               # it 'failoverReplica' do
               #   # Add test code here
               # end
 
-              it do
-                is_expected
-                  .to have_attributes(instance_type: 'CLOUD_SQL_INSTANCE')
-              end
+              it { is_expected.to have_attributes(instance_type: 'CLOUD_SQL_INSTANCE') }
+
+              it { is_expected.to have_attributes(ipv6_address: 'test ipv6_address#0 data') }
 
               it do
                 is_expected
-                  .to have_attributes(ipv6_address: 'test ipv6_address#0 data')
-              end
-
-              it do
-                is_expected
-                  .to have_attributes(
-                    master_instance_name: 'test master_instance_name#0 data'
-                  )
+                  .to have_attributes(master_instance_name: 'test master_instance_name#0 data')
               end
 
               it { is_expected.to have_attributes(max_disk_size: 399_168_897) }
 
               it { is_expected.to have_attributes(i_label: 'test name#0 data') }
 
-              it do
-                is_expected.to have_attributes(region: 'test region#0 data')
-              end
+              it { is_expected.to have_attributes(region: 'test region#0 data') }
 
               # TODO(nelsonjr): Implement complex nested property object test.
               # it 'replicaConfiguration' do
@@ -772,46 +702,29 @@ context 'gsql_instance' do
 
               it { is_expected.to have_attributes(backend_type: 'SECOND_GEN') }
 
-              it do
-                is_expected
-                  .to have_attributes(
-                    connection_name: 'test connection_name#1 data'
-                  )
-              end
+              it { is_expected.to have_attributes(connection_name: 'test connection_name#1 data') }
 
-              it do
-                is_expected.to have_attributes(database_version: 'MYSQL_5_6')
-              end
+              it { is_expected.to have_attributes(database_version: 'MYSQL_5_6') }
 
               # TODO(nelsonjr): Implement complex nested property object test.
               # it 'failoverReplica' do
               #   # Add test code here
               # end
 
-              it do
-                is_expected
-                  .to have_attributes(instance_type: 'ON_PREMISES_INSTANCE')
-              end
+              it { is_expected.to have_attributes(instance_type: 'ON_PREMISES_INSTANCE') }
+
+              it { is_expected.to have_attributes(ipv6_address: 'test ipv6_address#1 data') }
 
               it do
                 is_expected
-                  .to have_attributes(ipv6_address: 'test ipv6_address#1 data')
-              end
-
-              it do
-                is_expected
-                  .to have_attributes(
-                    master_instance_name: 'test master_instance_name#1 data'
-                  )
+                  .to have_attributes(master_instance_name: 'test master_instance_name#1 data')
               end
 
               it { is_expected.to have_attributes(max_disk_size: 798_337_795) }
 
               it { is_expected.to have_attributes(i_label: 'test name#1 data') }
 
-              it do
-                is_expected.to have_attributes(region: 'test region#1 data')
-              end
+              it { is_expected.to have_attributes(region: 'test region#1 data') }
 
               # TODO(nelsonjr): Implement complex nested property object test.
               # it 'replicaConfiguration' do
@@ -831,48 +744,29 @@ context 'gsql_instance' do
 
               it { is_expected.to have_attributes(backend_type: 'EXTERNAL') }
 
-              it do
-                is_expected
-                  .to have_attributes(
-                    connection_name: 'test connection_name#2 data'
-                  )
-              end
+              it { is_expected.to have_attributes(connection_name: 'test connection_name#2 data') }
 
-              it do
-                is_expected.to have_attributes(database_version: 'MYSQL_5_7')
-              end
+              it { is_expected.to have_attributes(database_version: 'MYSQL_5_7') }
 
               # TODO(nelsonjr): Implement complex nested property object test.
               # it 'failoverReplica' do
               #   # Add test code here
               # end
 
-              it do
-                is_expected
-                  .to have_attributes(instance_type: 'READ_REPLICA_INSTANCE')
-              end
+              it { is_expected.to have_attributes(instance_type: 'READ_REPLICA_INSTANCE') }
+
+              it { is_expected.to have_attributes(ipv6_address: 'test ipv6_address#2 data') }
 
               it do
                 is_expected
-                  .to have_attributes(ipv6_address: 'test ipv6_address#2 data')
+                  .to have_attributes(master_instance_name: 'test master_instance_name#2 data')
               end
 
-              it do
-                is_expected
-                  .to have_attributes(
-                    master_instance_name: 'test master_instance_name#2 data'
-                  )
-              end
-
-              it do
-                is_expected.to have_attributes(max_disk_size: 1_197_506_692)
-              end
+              it { is_expected.to have_attributes(max_disk_size: 1_197_506_692) }
 
               it { is_expected.to have_attributes(i_label: 'test name#2 data') }
 
-              it do
-                is_expected.to have_attributes(region: 'test region#2 data')
-              end
+              it { is_expected.to have_attributes(region: 'test region#2 data') }
 
               # TODO(nelsonjr): Implement complex nested property object test.
               # it 'replicaConfiguration' do
@@ -1106,12 +1000,7 @@ context 'gsql_instance' do
           end
           it { is_expected.to have_attributes(backend_type: 'FIRST_GEN') }
 
-          it do
-            is_expected
-              .to have_attributes(
-                connection_name: 'test connection_name#0 data'
-              )
-          end
+          it { is_expected.to have_attributes(connection_name: 'test connection_name#0 data') }
 
           it { is_expected.to have_attributes(database_version: 'MYSQL_5_5') }
 
@@ -1120,20 +1009,12 @@ context 'gsql_instance' do
           #   # Add test code here
           # end
 
-          it do
-            is_expected.to have_attributes(instance_type: 'CLOUD_SQL_INSTANCE')
-          end
+          it { is_expected.to have_attributes(instance_type: 'CLOUD_SQL_INSTANCE') }
+
+          it { is_expected.to have_attributes(ipv6_address: 'test ipv6_address#0 data') }
 
           it do
-            is_expected
-              .to have_attributes(ipv6_address: 'test ipv6_address#0 data')
-          end
-
-          it do
-            is_expected
-              .to have_attributes(
-                master_instance_name: 'test master_instance_name#0 data'
-              )
+            is_expected.to have_attributes(master_instance_name: 'test master_instance_name#0 data')
           end
 
           it { is_expected.to have_attributes(max_disk_size: 399_168_897) }
@@ -1335,12 +1216,7 @@ context 'gsql_instance' do
           end
           it { is_expected.to have_attributes(backend_type: 'FIRST_GEN') }
 
-          it do
-            is_expected
-              .to have_attributes(
-                connection_name: 'test connection_name#0 data'
-              )
-          end
+          it { is_expected.to have_attributes(connection_name: 'test connection_name#0 data') }
 
           it { is_expected.to have_attributes(database_version: 'MYSQL_5_5') }
 
@@ -1349,20 +1225,12 @@ context 'gsql_instance' do
           #   # Add test code here
           # end
 
-          it do
-            is_expected.to have_attributes(instance_type: 'CLOUD_SQL_INSTANCE')
-          end
+          it { is_expected.to have_attributes(instance_type: 'CLOUD_SQL_INSTANCE') }
+
+          it { is_expected.to have_attributes(ipv6_address: 'test ipv6_address#0 data') }
 
           it do
-            is_expected
-              .to have_attributes(ipv6_address: 'test ipv6_address#0 data')
-          end
-
-          it do
-            is_expected
-              .to have_attributes(
-                master_instance_name: 'test master_instance_name#0 data'
-              )
+            is_expected.to have_attributes(master_instance_name: 'test master_instance_name#0 data')
           end
 
           it { is_expected.to have_attributes(max_disk_size: 399_168_897) }

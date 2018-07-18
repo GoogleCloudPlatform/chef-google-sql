@@ -91,10 +91,8 @@ module Google
       # Data is coming from the GCP API
       class InstancIpAddressApi < InstancIpAddress
         def initialize(args)
-          @ip_address =
-            Google::Sql::Property::String.api_parse(args['ipAddress'])
-          @time_to_retire =
-            Google::Sql::Property::Time.api_parse(args['timeToRetire'])
+          @ip_address = Google::Sql::Property::String.api_parse(args['ipAddress'])
+          @time_to_retire = Google::Sql::Property::Time.api_parse(args['timeToRetire'])
           @type = Google::Sql::Property::Enum.api_parse(args['type'])
         end
       end
@@ -103,10 +101,8 @@ module Google
       # Data is coming from the Chef catalog
       class InstancIpAddressCatalog < InstancIpAddress
         def initialize(args)
-          @ip_address =
-            Google::Sql::Property::String.catalog_parse(args[:ip_address])
-          @time_to_retire =
-            Google::Sql::Property::Time.catalog_parse(args[:time_to_retire])
+          @ip_address = Google::Sql::Property::String.catalog_parse(args[:ip_address])
+          @time_to_retire = Google::Sql::Property::Time.catalog_parse(args[:time_to_retire])
           @type = Google::Sql::Property::Enum.catalog_parse(args[:type])
         end
       end
@@ -137,9 +133,7 @@ module Google
       # A Chef property that holds an integer
       class InstancIpAddressArray < Google::Sql::Property::Array
         def self.coerce
-          lambda do |x|
-            ::Google::Sql::Property::InstancIpAddressArray.catalog_parse(x)
-          end
+          ->(x) { ::Google::Sql::Property::InstancIpAddressArray.catalog_parse(x) }
         end
 
         # Used for parsing Chef catalog

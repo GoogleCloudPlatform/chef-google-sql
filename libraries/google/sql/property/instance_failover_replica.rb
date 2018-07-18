@@ -86,8 +86,7 @@ module Google
       # Data is coming from the GCP API
       class InstancFailoveReplicaApi < InstancFailoveReplica
         def initialize(args)
-          @available =
-            Google::Sql::Property::Boolean.api_parse(args['available'])
+          @available = Google::Sql::Property::Boolean.api_parse(args['available'])
           @name = Google::Sql::Property::String.api_parse(args['name'])
         end
       end
@@ -96,8 +95,7 @@ module Google
       # Data is coming from the Chef catalog
       class InstancFailoveReplicaCatalog < InstancFailoveReplica
         def initialize(args)
-          @available =
-            Google::Sql::Property::Boolean.catalog_parse(args[:available])
+          @available = Google::Sql::Property::Boolean.catalog_parse(args[:available])
           @name = Google::Sql::Property::String.catalog_parse(args[:name])
         end
       end
@@ -107,9 +105,7 @@ module Google
       # A class to manage input to FailoverReplica for instance.
       class InstancFailoveReplica
         def self.coerce
-          lambda do |x|
-            ::Google::Sql::Property::InstancFailoveReplica.catalog_parse(x)
-          end
+          ->(x) { ::Google::Sql::Property::InstancFailoveReplica.catalog_parse(x) }
         end
 
         # Used for parsing Chef catalog

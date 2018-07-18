@@ -61,15 +61,9 @@ context 'gsql_database' do
               allow(Time).to receive(:now).and_return(
                 Time.new(2017, 1, 2, 3, 4, 5)
               )
-              expect_network_get_success 1,
-                                         name: 'title0',
-                                         instance: 'test name#0 data'
-              expect_network_get_success 2,
-                                         name: 'title1',
-                                         instance: 'test name#1 data'
-              expect_network_get_success 3,
-                                         name: 'title2',
-                                         instance: 'test name#2 data'
+              expect_network_get_success 1, name: 'title0', instance: 'test name#0 data'
+              expect_network_get_success 2, name: 'title1', instance: 'test name#1 data'
+              expect_network_get_success 3, name: 'title2', instance: 'test name#2 data'
               expect_network_get_success_instance 1
               expect_network_get_success_instance 2
               expect_network_get_success_instance 3
@@ -164,14 +158,9 @@ context 'gsql_database' do
                 chef_run.find_resource(:gsql_database, 'title0')
               end
 
-              it do
-                is_expected.to have_attributes(charset: 'test charset#0 data')
-              end
+              it { is_expected.to have_attributes(charset: 'test charset#0 data') }
 
-              it do
-                is_expected
-                  .to have_attributes(collation: 'test collation#0 data')
-              end
+              it { is_expected.to have_attributes(collation: 'test collation#0 data') }
 
               it { is_expected.to have_attributes(d_label: 'title0') }
 
@@ -186,14 +175,9 @@ context 'gsql_database' do
                 chef_run.find_resource(:gsql_database, 'title1')
               end
 
-              it do
-                is_expected.to have_attributes(charset: 'test charset#1 data')
-              end
+              it { is_expected.to have_attributes(charset: 'test charset#1 data') }
 
-              it do
-                is_expected
-                  .to have_attributes(collation: 'test collation#1 data')
-              end
+              it { is_expected.to have_attributes(collation: 'test collation#1 data') }
 
               it { is_expected.to have_attributes(d_label: 'title1') }
 
@@ -208,14 +192,9 @@ context 'gsql_database' do
                 chef_run.find_resource(:gsql_database, 'title2')
               end
 
-              it do
-                is_expected.to have_attributes(charset: 'test charset#2 data')
-              end
+              it { is_expected.to have_attributes(charset: 'test charset#2 data') }
 
-              it do
-                is_expected
-                  .to have_attributes(collation: 'test collation#2 data')
-              end
+              it { is_expected.to have_attributes(collation: 'test collation#2 data') }
 
               it { is_expected.to have_attributes(d_label: 'title2') }
 
@@ -342,14 +321,9 @@ context 'gsql_database' do
                 chef_run.find_resource(:gsql_database, 'title0')
               end
 
-              it do
-                is_expected.to have_attributes(charset: 'test charset#0 data')
-              end
+              it { is_expected.to have_attributes(charset: 'test charset#0 data') }
 
-              it do
-                is_expected
-                  .to have_attributes(collation: 'test collation#0 data')
-              end
+              it { is_expected.to have_attributes(collation: 'test collation#0 data') }
 
               it { is_expected.to have_attributes(d_label: 'test name#0 data') }
 
@@ -364,14 +338,9 @@ context 'gsql_database' do
                 chef_run.find_resource(:gsql_database, 'title1')
               end
 
-              it do
-                is_expected.to have_attributes(charset: 'test charset#1 data')
-              end
+              it { is_expected.to have_attributes(charset: 'test charset#1 data') }
 
-              it do
-                is_expected
-                  .to have_attributes(collation: 'test collation#1 data')
-              end
+              it { is_expected.to have_attributes(collation: 'test collation#1 data') }
 
               it { is_expected.to have_attributes(d_label: 'test name#1 data') }
 
@@ -386,14 +355,9 @@ context 'gsql_database' do
                 chef_run.find_resource(:gsql_database, 'title2')
               end
 
-              it do
-                is_expected.to have_attributes(charset: 'test charset#2 data')
-              end
+              it { is_expected.to have_attributes(charset: 'test charset#2 data') }
 
-              it do
-                is_expected
-                  .to have_attributes(collation: 'test collation#2 data')
-              end
+              it { is_expected.to have_attributes(collation: 'test collation#2 data') }
 
               it { is_expected.to have_attributes(d_label: 'test name#2 data') }
 
@@ -453,9 +417,7 @@ context 'gsql_database' do
         # Ensure present: resource missing, ignore, no name, pass
         context 'title == name (pass)' do
           before do
-            expect_network_get_failed 1,
-                                      name: 'title0',
-                                      instance: 'test name#0 data'
+            expect_network_get_failed 1, name: 'title0', instance: 'test name#0 data'
             expect_network_create \
               1,
               {
@@ -466,9 +428,7 @@ context 'gsql_database' do
               },
               name: 'title0',
               instance: 'test name#0 data'
-            expect_network_get_async 1,
-                                     name: 'title0',
-                                     instance: 'test name#0 data'
+            expect_network_get_async 1, name: 'title0', instance: 'test name#0 data'
             expect_network_get_success_instance 1
           end
 
@@ -534,9 +494,7 @@ context 'gsql_database' do
           end
           it { is_expected.to have_attributes(charset: 'test charset#0 data') }
 
-          it do
-            is_expected.to have_attributes(collation: 'test collation#0 data')
-          end
+          it { is_expected.to have_attributes(collation: 'test collation#0 data') }
 
           it { is_expected.to have_attributes(d_label: 'title0') }
 
@@ -636,9 +594,7 @@ context 'gsql_database' do
           end
           it { is_expected.to have_attributes(charset: 'test charset#0 data') }
 
-          it do
-            is_expected.to have_attributes(collation: 'test collation#0 data')
-          end
+          it { is_expected.to have_attributes(collation: 'test collation#0 data') }
 
           it { is_expected.to have_attributes(d_label: 'test name#0 data') }
 
@@ -665,9 +621,7 @@ context 'gsql_database' do
         # Ensure absent: resource missing, ignore, no name, pass
         context 'title == name (pass)' do
           before do
-            expect_network_get_failed 1,
-                                      name: 'title0',
-                                      instance: 'test name#0 data'
+            expect_network_get_failed 1, name: 'title0', instance: 'test name#0 data'
             expect_network_get_success_instance 1
           end
 
@@ -814,13 +768,9 @@ context 'gsql_database' do
         # Ensure absent: resource exists, ignore, no name, pass
         context 'title == name (pass)' do
           before do
-            expect_network_get_success 1,
-                                       name: 'title0',
-                                       instance: 'test name#0 data'
+            expect_network_get_success 1, name: 'title0', instance: 'test name#0 data'
             expect_network_delete 1, 'title0', instance: 'test name#0 data'
-            expect_network_get_async 1,
-                                     name: 'title0',
-                                     instance: 'test name#0 data'
+            expect_network_get_async 1, name: 'title0', instance: 'test name#0 data'
             expect_network_get_success_instance 1
           end
 
