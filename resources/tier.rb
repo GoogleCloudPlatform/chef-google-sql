@@ -54,6 +54,11 @@ module Google
       property :project, String, desired_state: false, required: true
 
       action :create do
+        Chef.deprecated(:generic,
+                        ["gsql_tier has been deprecated.",
+                         "Please use the Tier Name instead."
+                        ].join(" "))
+
         fetch = fetch_wrapped_resource(@new_resource, 'sql#tier',
                                        'sql#tiersList',
                                        'items')

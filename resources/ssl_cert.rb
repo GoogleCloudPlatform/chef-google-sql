@@ -60,6 +60,11 @@ module Google
       property :project, String, desired_state: false, required: true
 
       action :create do
+        Chef.deprecated(:generic,
+                        ["gsql_ssl_cert has been deprecated.",
+                         "Please use the SslCert Name instead."
+                        ].join(" "))
+
         fetch = fetch_resource(@new_resource, self_link(@new_resource),
                                'sql#sslCert')
         if fetch.nil?
