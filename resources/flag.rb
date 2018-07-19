@@ -66,11 +66,6 @@ module Google
       property :project, String, desired_state: false, required: true
 
       action :create do
-        Chef.deprecated(:generic,
-                        ["gsql_flag has been deprecated.",
-                         "Please use the Flag Name instead."
-                        ].join(" "))
-
         fetch = fetch_wrapped_resource(@new_resource, 'sql#flag',
                                        'sql#flagsList',
                                        'items')
