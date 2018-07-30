@@ -43,17 +43,17 @@ module Google
       resource_name :gsql_ssl_cert
 
       property :cert, String, coerce: ::Google::Sql::Property::String.coerce, desired_state: true
-      property :cert_serial_number
+      property :cert_serial_number,
                String, coerce: ::Google::Sql::Property::String.coerce, desired_state: true
-      property :common_name
+      property :common_name,
                String, coerce: ::Google::Sql::Property::String.coerce, desired_state: true
       property :create_time, Time, coerce: ::Google::Sql::Property::Time.coerce, desired_state: true
-      property :expiration_time
+      property :expiration_time,
                Time, coerce: ::Google::Sql::Property::Time.coerce, desired_state: true
       property :instance,
                [String, ::Google::Sql::Data::InstancNameRef],
                coerce: ::Google::Sql::Property::InstancNameRef.coerce, desired_state: true
-      property :sha1_fingerprint
+      property :sha1_fingerprint,
                String, coerce: ::Google::Sql::Property::String.coerce, desired_state: true
 
       property :credential, String, desired_state: false, required: true

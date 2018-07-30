@@ -52,7 +52,7 @@ module Google
       property :instance,
                [String, ::Google::Sql::Data::InstancNameRef],
                coerce: ::Google::Sql::Property::InstancNameRef.coerce, desired_state: true
-      property :password
+      property :password,
                String, coerce: ::Google::Sql::Property::String.coerce, desired_state: true
 
       property :credential, String, desired_state: false, required: true

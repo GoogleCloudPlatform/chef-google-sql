@@ -42,11 +42,11 @@ module Google
     class Tier < Chef::Resource
       resource_name :gsql_tier
 
-      property :disk_quota
+      property :disk_quota,
                Integer, coerce: ::Google::Sql::Property::Integer.coerce, desired_state: true
       property :ram, Integer, coerce: ::Google::Sql::Property::Integer.coerce, desired_state: true
       # region is Array of Google::Sql::Property::StringArray
-      property :region
+      property :region,
                Array, coerce: ::Google::Sql::Property::StringArray.coerce, desired_state: true
       property :tier, String, coerce: ::Google::Sql::Property::String.coerce, desired_state: true
 

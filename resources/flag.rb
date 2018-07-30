@@ -44,14 +44,14 @@ module Google
       resource_name :gsql_flag
 
       # allowed_string_values is Array of Google::Sql::Property::StringArray
-      property :allowed_string_values
+      property :allowed_string_values,
                Array, coerce: ::Google::Sql::Property::StringArray.coerce, desired_state: true
       # applies_to is Array of Google::Sql::Property::StringArray
-      property :applies_to
+      property :applies_to,
                Array, coerce: ::Google::Sql::Property::StringArray.coerce, desired_state: true
-      property :max_value
+      property :max_value,
                Integer, coerce: ::Google::Sql::Property::Integer.coerce, desired_state: true
-      property :min_value
+      property :min_value,
                Integer, coerce: ::Google::Sql::Property::Integer.coerce, desired_state: true
       property :f_label,
                String,
