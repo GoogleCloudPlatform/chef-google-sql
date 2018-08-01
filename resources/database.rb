@@ -45,7 +45,7 @@ module Google
       resource_name :gsql_database
 
       property :charset, String, coerce: ::Google::Sql::Property::String.coerce, desired_state: true
-      property :collation
+      property :collation,
                String, coerce: ::Google::Sql::Property::String.coerce, desired_state: true
       property :d_label,
                String,

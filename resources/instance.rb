@@ -58,7 +58,7 @@ module Google
       property :backend_type,
                equal_to: %w[FIRST_GEN SECOND_GEN EXTERNAL],
                coerce: ::Google::Sql::Property::Enum.coerce, desired_state: true
-      property :connection_name
+      property :connection_name,
                String, coerce: ::Google::Sql::Property::String.coerce, desired_state: true
       property :database_version,
                equal_to: %w[MYSQL_5_5 MYSQL_5_6 MYSQL_5_7 POSTGRES_9_6],
@@ -73,11 +73,11 @@ module Google
       property :ip_addresses,
                Array,
                coerce: ::Google::Sql::Property::InstancIpAddressArray.coerce, desired_state: true
-      property :ipv6_address
+      property :ipv6_address,
                String, coerce: ::Google::Sql::Property::String.coerce, desired_state: true
-      property :master_instance_name
+      property :master_instance_name,
                String, coerce: ::Google::Sql::Property::String.coerce, desired_state: true
-      property :max_disk_size
+      property :max_disk_size,
                Integer, coerce: ::Google::Sql::Property::Integer.coerce, desired_state: true
       property :i_label,
                String,
