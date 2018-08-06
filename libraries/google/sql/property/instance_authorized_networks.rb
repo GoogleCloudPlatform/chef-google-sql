@@ -30,7 +30,7 @@ module Google
   module Sql
     module Data
       # A class to manage data for AuthorizedNetworks for instance.
-      class InstancAuthoriNetwork
+      class InstanceAuthorizedNetworks
         include Comparable
 
         attr_reader :expiration_time
@@ -54,7 +54,7 @@ module Google
         end
 
         def ==(other)
-          return false unless other.is_a? InstancAuthoriNetwork
+          return false unless other.is_a? InstanceAuthorizedNetworks
           compare_fields(other).each do |compare|
             next if compare[:self].nil? || compare[:other].nil?
             return false if compare[:self] != compare[:other]
@@ -63,7 +63,7 @@ module Google
         end
 
         def <=>(other)
-          return false unless other.is_a? InstancAuthoriNetwork
+          return false unless other.is_a? InstanceAuthorizedNetworks
           compare_fields(other).each do |compare|
             next if compare[:self].nil? || compare[:other].nil?
             result = compare[:self] <=> compare[:other]
@@ -87,9 +87,9 @@ module Google
         end
       end
 
-      # Manages a InstancAuthoriNetwork nested object
+      # Manages a InstanceAuthorizedNetworks nested object
       # Data is coming from the GCP API
-      class InstancAuthoriNetworkApi < InstancAuthoriNetwork
+      class InstanceAuthorizedNetworksApi < InstanceAuthorizedNetworks
         def initialize(args)
           @expiration_time = Google::Sql::Property::Time.api_parse(args['expirationTime'])
           @name = Google::Sql::Property::String.api_parse(args['name'])
@@ -97,9 +97,9 @@ module Google
         end
       end
 
-      # Manages a InstancAuthoriNetwork nested object
+      # Manages a InstanceAuthorizedNetworks nested object
       # Data is coming from the Chef catalog
-      class InstancAuthoriNetworkCatalog < InstancAuthoriNetwork
+      class InstanceAuthorizedNetworksCatalog < InstanceAuthorizedNetworks
         def initialize(args)
           @expiration_time = Google::Sql::Property::Time.catalog_parse(args[:expiration_time])
           @name = Google::Sql::Property::String.catalog_parse(args[:name])
@@ -110,46 +110,46 @@ module Google
 
     module Property
       # A class to manage input to AuthorizedNetworks for instance.
-      class InstancAuthoriNetwork
+      class InstanceAuthorizedNetworks
         def self.coerce
-          ->(x) { ::Google::Sql::Property::InstancAuthoriNetwork.catalog_parse(x) }
+          ->(x) { ::Google::Sql::Property::InstanceAuthorizedNetworks.catalog_parse(x) }
         end
 
         # Used for parsing Chef catalog
         def self.catalog_parse(value)
           return if value.nil?
-          return value if value.is_a? Data::InstancAuthoriNetwork
-          Data::InstancAuthoriNetworkCatalog.new(value)
+          return value if value.is_a? Data::InstanceAuthorizedNetworks
+          Data::InstanceAuthorizedNetworksCatalog.new(value)
         end
 
         # Used for parsing GCP API responses
         def self.api_parse(value)
           return if value.nil?
-          return value if value.is_a? Data::InstancAuthoriNetwork
-          Data::InstancAuthoriNetworkApi.new(value)
+          return value if value.is_a? Data::InstanceAuthorizedNetworks
+          Data::InstanceAuthorizedNetworksApi.new(value)
         end
       end
 
       # A Chef property that holds an integer
-      class InstancAuthoriNetworkArray < Google::Sql::Property::Array
+      class InstanceAuthorizedNetworksArray < Google::Sql::Property::Array
         def self.coerce
-          ->(x) { ::Google::Sql::Property::InstancAuthoriNetworkArray.catalog_parse(x) }
+          ->(x) { ::Google::Sql::Property::InstanceAuthorizedNetworksArray.catalog_parse(x) }
         end
 
         # Used for parsing Chef catalog
         def self.catalog_parse(value)
           return if value.nil?
-          return InstancAuthoriNetwork.catalog_parse(value) \
+          return InstanceAuthorizedNetworks.catalog_parse(value) \
             unless value.is_a?(::Array)
-          value.map { |v| InstancAuthoriNetwork.catalog_parse(v) }
+          value.map { |v| InstanceAuthorizedNetworks.catalog_parse(v) }
         end
 
         # Used for parsing GCP API responses
         def self.api_parse(value)
           return if value.nil?
-          return InstancAuthoriNetwork.api_parse(value) \
+          return InstanceAuthorizedNetworks.api_parse(value) \
             unless value.is_a?(::Array)
-          value.map { |v| InstancAuthoriNetwork.api_parse(v) }
+          value.map { |v| InstanceAuthorizedNetworks.api_parse(v) }
         end
       end
     end
