@@ -30,11 +30,11 @@ module Google
     module Data
       # Base class for ResourceRefs
       # Imports name from instance
-      class InstancNameRef
+      class InstanceNameRef
         include Comparable
 
         def ==(other)
-          return false unless other.is_a? InstancNameRef
+          return false unless other.is_a? InstanceNameRef
           return false if resource != other.resource
           true
         end
@@ -52,7 +52,7 @@ module Google
 
       # A class to fetch the resource value from a referenced block
       # Will return the value exported from a different Chef resource
-      class InstancNameRefCatalog < InstancNameRef
+      class InstanceNameRefCatalog < InstanceNameRef
         def initialize(title)
           @title = title
         end
@@ -81,7 +81,7 @@ module Google
 
       # A class to manage a JSON blob from GCP API
       # Will immediately return value from JSON blob without changes
-      class InstancNameRefApi < InstancNameRef
+      class InstanceNameRefApi < InstanceNameRef
         attr_reader :resource
 
         def initialize(resource)
@@ -100,9 +100,9 @@ module Google
 
     module Property
       # A class to manage fetching name from a instance
-      class InstancNameRef
+      class InstanceNameRef
         def self.coerce
-          ->(x) { ::Google::Sql::Property::InstancNameRef.catalog_parse(x) }
+          ->(x) { ::Google::Sql::Property::InstanceNameRef.catalog_parse(x) }
         end
 
         def catalog_parse(value)
@@ -112,15 +112,15 @@ module Google
 
         def self.catalog_parse(value)
           return if value.nil?
-          return value if value.is_a? Data::InstancNameRef
-          Data::InstancNameRefCatalog.new(value)
+          return value if value.is_a? Data::InstanceNameRef
+          Data::InstanceNameRefCatalog.new(value)
         end
 
         # Used for fetched JSON values
         def self.api_parse(value)
           return if value.nil?
-          return value if value.is_a? Data::InstancNameRef
-          Data::InstancNameRefApi.new(value)
+          return value if value.is_a? Data::InstanceNameRef
+          Data::InstanceNameRefApi.new(value)
         end
       end
     end

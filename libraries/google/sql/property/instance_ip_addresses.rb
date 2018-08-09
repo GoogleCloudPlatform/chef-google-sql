@@ -30,7 +30,7 @@ module Google
   module Sql
     module Data
       # A class to manage data for IpAddresses for instance.
-      class InstancIpAddress
+      class InstanceIpAddresses
         include Comparable
 
         attr_reader :ip_address
@@ -54,7 +54,7 @@ module Google
         end
 
         def ==(other)
-          return false unless other.is_a? InstancIpAddress
+          return false unless other.is_a? InstanceIpAddresses
           compare_fields(other).each do |compare|
             next if compare[:self].nil? || compare[:other].nil?
             return false if compare[:self] != compare[:other]
@@ -63,7 +63,7 @@ module Google
         end
 
         def <=>(other)
-          return false unless other.is_a? InstancIpAddress
+          return false unless other.is_a? InstanceIpAddresses
           compare_fields(other).each do |compare|
             next if compare[:self].nil? || compare[:other].nil?
             result = compare[:self] <=> compare[:other]
@@ -87,9 +87,9 @@ module Google
         end
       end
 
-      # Manages a InstancIpAddress nested object
+      # Manages a InstanceIpAddresses nested object
       # Data is coming from the GCP API
-      class InstancIpAddressApi < InstancIpAddress
+      class InstanceIpAddressesApi < InstanceIpAddresses
         def initialize(args)
           @ip_address = Google::Sql::Property::String.api_parse(args['ipAddress'])
           @time_to_retire = Google::Sql::Property::Time.api_parse(args['timeToRetire'])
@@ -97,9 +97,9 @@ module Google
         end
       end
 
-      # Manages a InstancIpAddress nested object
+      # Manages a InstanceIpAddresses nested object
       # Data is coming from the Chef catalog
-      class InstancIpAddressCatalog < InstancIpAddress
+      class InstanceIpAddressesCatalog < InstanceIpAddresses
         def initialize(args)
           @ip_address = Google::Sql::Property::String.catalog_parse(args[:ip_address])
           @time_to_retire = Google::Sql::Property::Time.catalog_parse(args[:time_to_retire])
@@ -110,46 +110,46 @@ module Google
 
     module Property
       # A class to manage input to IpAddresses for instance.
-      class InstancIpAddress
+      class InstanceIpAddresses
         def self.coerce
-          ->(x) { ::Google::Sql::Property::InstancIpAddress.catalog_parse(x) }
+          ->(x) { ::Google::Sql::Property::InstanceIpAddresses.catalog_parse(x) }
         end
 
         # Used for parsing Chef catalog
         def self.catalog_parse(value)
           return if value.nil?
-          return value if value.is_a? Data::InstancIpAddress
-          Data::InstancIpAddressCatalog.new(value)
+          return value if value.is_a? Data::InstanceIpAddresses
+          Data::InstanceIpAddressesCatalog.new(value)
         end
 
         # Used for parsing GCP API responses
         def self.api_parse(value)
           return if value.nil?
-          return value if value.is_a? Data::InstancIpAddress
-          Data::InstancIpAddressApi.new(value)
+          return value if value.is_a? Data::InstanceIpAddresses
+          Data::InstanceIpAddressesApi.new(value)
         end
       end
 
       # A Chef property that holds an integer
-      class InstancIpAddressArray < Google::Sql::Property::Array
+      class InstanceIpAddressesArray < Google::Sql::Property::Array
         def self.coerce
-          ->(x) { ::Google::Sql::Property::InstancIpAddressArray.catalog_parse(x) }
+          ->(x) { ::Google::Sql::Property::InstanceIpAddressesArray.catalog_parse(x) }
         end
 
         # Used for parsing Chef catalog
         def self.catalog_parse(value)
           return if value.nil?
-          return InstancIpAddress.catalog_parse(value) \
+          return InstanceIpAddresses.catalog_parse(value) \
             unless value.is_a?(::Array)
-          value.map { |v| InstancIpAddress.catalog_parse(v) }
+          value.map { |v| InstanceIpAddresses.catalog_parse(v) }
         end
 
         # Used for parsing GCP API responses
         def self.api_parse(value)
           return if value.nil?
-          return InstancIpAddress.api_parse(value) \
+          return InstanceIpAddresses.api_parse(value) \
             unless value.is_a?(::Array)
-          value.map { |v| InstancIpAddress.api_parse(v) }
+          value.map { |v| InstanceIpAddresses.api_parse(v) }
         end
       end
     end

@@ -29,7 +29,7 @@ module Google
   module Sql
     module Data
       # A class to manage data for FailoverReplica for instance.
-      class InstancFailoveReplica
+      class InstanceFailoverReplica
         include Comparable
 
         attr_reader :available
@@ -50,7 +50,7 @@ module Google
         end
 
         def ==(other)
-          return false unless other.is_a? InstancFailoveReplica
+          return false unless other.is_a? InstanceFailoverReplica
           compare_fields(other).each do |compare|
             next if compare[:self].nil? || compare[:other].nil?
             return false if compare[:self] != compare[:other]
@@ -59,7 +59,7 @@ module Google
         end
 
         def <=>(other)
-          return false unless other.is_a? InstancFailoveReplica
+          return false unless other.is_a? InstanceFailoverReplica
           compare_fields(other).each do |compare|
             next if compare[:self].nil? || compare[:other].nil?
             result = compare[:self] <=> compare[:other]
@@ -82,18 +82,18 @@ module Google
         end
       end
 
-      # Manages a InstancFailoveReplica nested object
+      # Manages a InstanceFailoverReplica nested object
       # Data is coming from the GCP API
-      class InstancFailoveReplicaApi < InstancFailoveReplica
+      class InstanceFailoverReplicaApi < InstanceFailoverReplica
         def initialize(args)
           @available = Google::Sql::Property::Boolean.api_parse(args['available'])
           @name = Google::Sql::Property::String.api_parse(args['name'])
         end
       end
 
-      # Manages a InstancFailoveReplica nested object
+      # Manages a InstanceFailoverReplica nested object
       # Data is coming from the Chef catalog
-      class InstancFailoveReplicaCatalog < InstancFailoveReplica
+      class InstanceFailoverReplicaCatalog < InstanceFailoverReplica
         def initialize(args)
           @available = Google::Sql::Property::Boolean.catalog_parse(args[:available])
           @name = Google::Sql::Property::String.catalog_parse(args[:name])
@@ -103,23 +103,23 @@ module Google
 
     module Property
       # A class to manage input to FailoverReplica for instance.
-      class InstancFailoveReplica
+      class InstanceFailoverReplica
         def self.coerce
-          ->(x) { ::Google::Sql::Property::InstancFailoveReplica.catalog_parse(x) }
+          ->(x) { ::Google::Sql::Property::InstanceFailoverReplica.catalog_parse(x) }
         end
 
         # Used for parsing Chef catalog
         def self.catalog_parse(value)
           return if value.nil?
-          return value if value.is_a? Data::InstancFailoveReplica
-          Data::InstancFailoveReplicaCatalog.new(value)
+          return value if value.is_a? Data::InstanceFailoverReplica
+          Data::InstanceFailoverReplicaCatalog.new(value)
         end
 
         # Used for parsing GCP API responses
         def self.api_parse(value)
           return if value.nil?
-          return value if value.is_a? Data::InstancFailoveReplica
-          Data::InstancFailoveReplicaApi.new(value)
+          return value if value.is_a? Data::InstanceFailoverReplica
+          Data::InstanceFailoverReplicaApi.new(value)
         end
       end
     end

@@ -50,8 +50,8 @@ module Google
                coerce: ::Google::Sql::Property::String.coerce,
                name_property: true, desired_state: true
       property :instance,
-               [String, ::Google::Sql::Data::InstancNameRef],
-               coerce: ::Google::Sql::Property::InstancNameRef.coerce, desired_state: true
+               [String, ::Google::Sql::Data::InstanceNameRef],
+               coerce: ::Google::Sql::Property::InstanceNameRef.coerce, desired_state: true
       property :password,
                String, coerce: ::Google::Sql::Property::String.coerce, desired_state: true
 
