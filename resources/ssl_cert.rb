@@ -65,8 +65,7 @@ module Google
                          "Please use the SslCert Name instead."
                         ].join(" "))
 
-        fetch = fetch_resource(@new_resource, self_link(@new_resource),
-                               'sql#sslCert')
+        fetch = fetch_resource(@new_resource, self_link(@new_resource), 'sql#sslCert')
         if fetch.nil?
           converge_by "Creating gsql_ssl_cert[#{new_resource.name}]" do
             # TODO(nelsonjr): Show a list of variables to create
@@ -96,8 +95,7 @@ module Google
       end
 
       action :delete do
-        fetch = fetch_resource(@new_resource, self_link(@new_resource),
-                               'sql#sslCert')
+        fetch = fetch_resource(@new_resource, self_link(@new_resource), 'sql#sslCert')
         unless fetch.nil?
           converge_by "Deleting gsql_ssl_cert[#{new_resource.name}]" do
             delete_req = ::Google::Sql::Network::Delete.new(

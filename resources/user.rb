@@ -84,9 +84,7 @@ module Google
       end
 
       action :delete do
-        fetch = fetch_wrapped_resource(@new_resource, 'sql#user',
-                                       'sql#usersList',
-                                       'items')
+        fetch = fetch_wrapped_resource(@new_resource, 'sql#user', 'sql#usersList', 'items')
         unless fetch.nil?
           converge_by "Deleting gsql_user[#{new_resource.name}]" do
             delete_req = ::Google::Sql::Network::Delete.new(

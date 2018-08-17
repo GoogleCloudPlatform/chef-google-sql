@@ -106,9 +106,7 @@ module Google
       end
 
       action :delete do
-        fetch = fetch_wrapped_resource(@new_resource, 'sql#flag',
-                                       'sql#flagsList',
-                                       'items')
+        fetch = fetch_wrapped_resource(@new_resource, 'sql#flag', 'sql#flagsList', 'items')
         unless fetch.nil?
           converge_by "Deleting gsql_flag[#{new_resource.name}]" do
             delete_req = ::Google::Sql::Network::Delete.new(

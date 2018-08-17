@@ -87,9 +87,7 @@ module Google
       end
 
       action :delete do
-        fetch = fetch_wrapped_resource(@new_resource, 'sql#tier',
-                                       'sql#tiersList',
-                                       'items')
+        fetch = fetch_wrapped_resource(@new_resource, 'sql#tier', 'sql#tiersList', 'items')
         unless fetch.nil?
           converge_by "Deleting gsql_tier[#{new_resource.name}]" do
             delete_req = ::Google::Sql::Network::Delete.new(
