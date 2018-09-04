@@ -146,6 +146,7 @@ context 'gsql_instance' do
                         ipv4_enabled: true,
                         require_ssl: true
                       },
+                      settings_version: 1508110470,
                       tier: 'test tier#0 data'
                     })
                     project 'test project#0 data'
@@ -215,6 +216,7 @@ context 'gsql_instance' do
                         ipv4_enabled: false,
                         require_ssl: false
                       },
+                      settings_version: 3016220941,
                       tier: 'test tier#1 data'
                     })
                     project 'test project#1 data'
@@ -269,6 +271,7 @@ context 'gsql_instance' do
                         ipv4_enabled: true,
                         require_ssl: true
                       },
+                      settings_version: 4524331411,
                       tier: 'test tier#2 data'
                     })
                     project 'test project#2 data'
@@ -513,6 +516,7 @@ context 'gsql_instance' do
                         ipv4_enabled: true,
                         require_ssl: true
                       },
+                      settings_version: 1508110470,
                       tier: 'test tier#0 data'
                     })
                     project 'test project#0 data'
@@ -583,6 +587,7 @@ context 'gsql_instance' do
                         ipv4_enabled: false,
                         require_ssl: false
                       },
+                      settings_version: 3016220941,
                       tier: 'test tier#1 data'
                     })
                     project 'test project#1 data'
@@ -638,6 +643,7 @@ context 'gsql_instance' do
                         ipv4_enabled: true,
                         require_ssl: true
                       },
+                      settings_version: 4524331411,
                       tier: 'test tier#2 data'
                     })
                     project 'test project#2 data'
@@ -887,7 +893,8 @@ context 'gsql_instance' do
                     ],
                     'requireSsl' => true
                   },
-                  'tier' => 'test tier#0 data'
+                  'tier' => 'test tier#0 data',
+                  'settingsVersion' => 1_508_110_470
                 }
               },
               name: 'title0'
@@ -975,6 +982,7 @@ context 'gsql_instance' do
                       ipv4_enabled: true,
                       require_ssl: true
                     },
+                    settings_version: 1508110470,
                     tier: 'test tier#0 data'
                   })
                   project 'test project#0 data'
@@ -1104,7 +1112,8 @@ context 'gsql_instance' do
                   ],
                   'requireSsl' => true
                 },
-                'tier' => 'test tier#0 data'
+                'tier' => 'test tier#0 data',
+                'settingsVersion' => 1_508_110_470
               }
             expect_network_get_async 1
             # rubocop:enable Metrics/LineLength
@@ -1191,6 +1200,7 @@ context 'gsql_instance' do
                       ipv4_enabled: true,
                       require_ssl: true
                     },
+                    settings_version: 1508110470,
                     tier: 'test tier#0 data'
                   })
                   project 'test project#0 data'

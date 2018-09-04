@@ -183,11 +183,11 @@ module Google
             replicaConfiguration: new_resource.replica_configuration,
             settings: new_resource.settings
           }.reject { |_, v| v.nil? }
-          unless @__fetched.nil?
+          unless @current_resource.nil?
             # Convert to pure JSON
             request = JSON.parse(request.to_json)
             request['settings']['settingsVersion'] =
-              @__fetched['settings']['settingsVersion']
+              @current_resource.settings.settings_version
           end
 
           request.to_json
