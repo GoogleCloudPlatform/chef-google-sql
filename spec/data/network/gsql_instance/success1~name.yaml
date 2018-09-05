@@ -87,4 +87,5 @@ settings:
       value: test value#2 data
     requireSsl: true
   tier: test tier#0 data
+  settingsVersion: 1508110470
 selfLink: selflink(resource(instance,0))
