@@ -333,11 +333,11 @@ module Google
         end
 
         # rubocop:disable Metrics/CyclomaticComplexity
-        def self.return_if_object(response, kind)
+        def self.return_if_object(response, kind, allow_not_found = false)
           raise "Bad response: #{response}" \
             unless response.is_a?(Net::HTTPResponse)
-          return if response.is_a?(Net::HTTPNotFound)
           return if response.is_a?(Net::HTTPNoContent)
+          return if response.is_a?(Net::HTTPNotFound) && allow_not_found
           # TODO(nelsonjr): Remove return of Net::HTTPForbidden from
           # return_if_object once Cloud SQL bug http://b/62635365 is resolved.
           # Currently the API returns 403 for objects that do not exist, even
@@ -345,7 +345,7 @@ module Google
           # return 404 as it is supposed to be.
           # Once 404 is the correct response, the temporary workaround should
           # be removed.
-          return if response.is_a?(Net::HTTPForbidden)
+          return if response.is_a?(Net::HTTPForbidden) && allow_not_found
           result = JSON.parse(response.body)
           raise_if_errors result, %w[error errors], 'message'
           raise "Bad response: #{response}" unless response.is_a?(Net::HTTPOK)
@@ -434,7 +434,7 @@ module Google
           get_request = ::Google::Sql::Network::Get.new(
             self_link, fetch_auth(resource)
           )
-          return_if_object get_request.send, kind
+          return_if_object get_request.send, kind, true
         end
 
         def self.raise_if_errors(response, err_path, msg_field)
