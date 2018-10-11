@@ -65,7 +65,9 @@ module Google
                          "Please use the SslCert Name instead."
                         ].join(" "))
 
-        fetch = fetch_resource(@new_resource, self_link(@new_resource), 'sql#sslCert')
+        fetch = fetch_wrapped_resource(@new_resource, 'sql#sslCert',
+                                       'sql#sslCertsList',
+                                       'items')
         if fetch.nil?
           converge_by "Creating gsql_ssl_cert[#{new_resource.name}]" do
             # TODO(nelsonjr): Show a list of variables to create
@@ -95,7 +97,7 @@ module Google
       end
 
       action :delete do
-        fetch = fetch_resource(@new_resource, self_link(@new_resource), 'sql#sslCert')
+        fetch = fetch_wrapped_resource(@new_resource, 'sql#sslCert', 'sql#sslCertsList', 'items')
         unless fetch.nil?
           converge_by "Deleting gsql_ssl_cert[#{new_resource.name}]" do
             delete_req = ::Google::Sql::Network::Delete.new(
@@ -121,6 +123,16 @@ module Google
             expirationTime: new_resource.expiration_time
           }.reject { |_, v| v.nil? }
           request.to_json
+        end
+
+        def unwrap_resource_filter(resource)
+          self.class.unwrap_resource_filter(resource)
+        end
+
+        def self.unwrap_resource_filter(resource)
+          {
+            sha1_fingerprint: resource.sha1_fingerprint
+          }
         end
 
         def update
@@ -206,6 +218,16 @@ module Google
             ["  set #{property.to_s.ljust(property_size)}",
              "to #{properties_str}#{default}"].join(' ')
           end.compact
+        end
+
+        def resource_to_query_predicate(resource)
+          self.class.resource_to_query_predicate(resource)
+        end
+
+        def self.resource_to_query_predicate(resource)
+          {
+            sha1_fingerprint: resource.sha1_fingerprint
+          }
         end
 
         def fetch_auth(resource)
@@ -300,6 +322,36 @@ module Google
             self_link, fetch_auth(resource)
           )
           return_if_object get_request.send, kind, true
+        end
+
+        def fetch_wrapped_resource(resource, kind, wrap_kind, wrap_path)
+          self.class.fetch_wrapped_resource(resource, kind, wrap_kind, wrap_path)
+        end
+
+        def self.fetch_wrapped_resource(resource, kind, wrap_kind, wrap_path)
+          result = fetch_resource(resource, self_link(resource), wrap_kind)
+          return if result.nil? || !result.key?(wrap_path)
+          result = unwrap_resource(result[wrap_path], resource)
+          return if result.nil?
+          raise "Incorrect result: #{result['kind']} (expected #{kind})" \
+            unless result['kind'] == kind
+          result
+        end
+
+        def unwrap_resource(result, resource)
+          self.class.unwrap_resource(result, resource)
+        end
+
+        def self.unwrap_resource(result, resource)
+          query_predicate = unwrap_resource_filter(resource)
+          matches = result.select do |entry|
+            query_predicate.all? do |k, v|
+              entry[k.id2name] == v
+            end
+          end
+          raise "More than 1 result found: #{matches}" if matches.size > 1
+          return if matches.empty?
+          matches.first
         end
 
         def self.raise_if_errors(response, err_path, msg_field)
